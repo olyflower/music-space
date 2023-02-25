@@ -40,6 +40,9 @@ class TrackSerializer(ModelSerializer):
         validated_data["artist"] = artist
         validated_data["album"] = album
 
+        if not artist_data or not album_data:
+            raise ValueError("Both artist and album fields are required.")
+
         track = Track.objects.create(**validated_data)
 
         return track
