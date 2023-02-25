@@ -1,5 +1,8 @@
+import random
+
 from django.contrib.auth import get_user_model
 from django.db import models
+from faker import Faker
 
 from core.models import BaseModel
 
@@ -16,11 +19,23 @@ class Track(BaseModel):
         ordering = ["title"]
 
     def __str__(self):
-        return self.title
+        return f"{self.title} ({self.pk})"
 
     def save(self, *args, **kwargs):
         self.full_clean()
         return super().save(*args, **kwargs)
+
+    @classmethod
+    def generate_instances(cls, count):
+        faker = Faker()
+        for _ in range(count):
+            cls.objects.create(
+                title=faker.sentence(),
+                length=random.randint(50, 500),
+                create_date=faker.date(),
+                artist=random.choice(Artist.objects.all()),
+                album=random.choice(Album.objects.all()),
+            )
 
 
 class Playlist(BaseModel):
@@ -47,6 +62,12 @@ class Album(BaseModel):
     def __str__(self):
         return self.title
 
+    @classmethod
+    def generate_instances(cls, count):
+        faker = Faker()
+        for _ in range(count):
+            cls.objects.create(title=faker.sentence(), genre=random.choice(Genre.objects.all()))
+
 
 class Artist(BaseModel):
     name = models.CharField(max_length=200)
@@ -57,6 +78,14 @@ class Artist(BaseModel):
 
     def __str__(self):
         return self.name
+
+    @classmethod
+    def generate_instances(cls, count):
+        faker = Faker()
+        for _ in range(count):
+            cls.objects.create(
+                name=faker.name(),
+            )
 
 
 class Genre(BaseModel):
