@@ -12,10 +12,6 @@ class TestMusicModel(TestCase):
         self.test_track = sample_track(title="track_title", artist=self.artist)
         self.test_track_1 = sample_track(title="track_title", artist=self.artist, album=self.album)
 
-    def tearDown(self):
-        self.test_track.delete()
-        self.test_track_1.delete()
-
     def test_track_title_max_length(self):
         with self.assertRaises(ValidationError):
             sample_track(title="A" * 7000)
