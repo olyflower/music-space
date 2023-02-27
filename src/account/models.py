@@ -59,7 +59,3 @@ class Customer(AbstractBaseUser, PermissionsMixin):
 
     def get_working_time(self):
         return f"Time on site: {timezone.now() - self.date_joined}"
-
-    def save(self, *args, **kwargs):
-        self.full_clean()
-        return super().save(*args, **kwargs)
