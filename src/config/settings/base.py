@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_extensions",
+    "crispy_forms",
     "rest_framework",
     "drf_yasg",
     "phonenumber_field",
@@ -44,6 +45,9 @@ MIDDLEWARE = [
 ROOT_URLCONF = "config.urls"
 
 AUTH_USER_MODEL = "account.Customer"
+
+LOGIN_REDIRECT_URL = "core:index"
+LOGOUT_REDIRECT_URL = "core:login"
 
 TEMPLATES = [
     {
@@ -94,6 +98,15 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
+
+STATIC_URL = "static/"
+STATICFILES_DIRS = (BASE_DIR / "static",)
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+MEDIA_URL = "media/"
+
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
