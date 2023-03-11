@@ -12,6 +12,11 @@ services:
     volumes:
       - ./src:/music/src
       - ./commands:/music/commands
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+
   postgres:
     image: postgres:12
     ports:
@@ -21,5 +26,19 @@ services:
     env_file:
       - .env
 
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    restart: on-failure
+    env_file:
+      - .env
+    ports:
+      - 5000:80
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+
 volumes:
   pg_data: { }
+  pgadmin_data: { }
