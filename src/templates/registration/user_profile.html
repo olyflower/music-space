@@ -1,0 +1,62 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="profile">
+  <div class="profile-header">
+    <h1>{{ user.first_name }}</h1>
+    <img src="#" alt="Profile picture">
+  </div>
+  <div class="profile-body">
+    <h2>About Me</h2>
+    <p>{{ user.profile.bio }}</p>
+    <h2>Details</h2>
+    <ul>
+      <li><strong>Gender:</strong> {{ user.profile.gender }}</li>
+      <li><strong>User Type:</strong> {{ user.profile.user_type }}</li>
+      <li><strong>Favourite Genres:</strong> {{ user.profile.favourite_genres }}</li>
+      <li><strong>Website:</strong> <a href="#">{{ user.profile.website }}</a></li>
+      <li><strong>City:</strong> {{ user.profile.city }}</li>
+      <li><strong>Postcode:</strong> {{ user.profile.postcode }}</li>
+    </ul>
+  </div>
+</div>
+
+<style>
+.profile {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.profile-header img {
+  max-width: 150px;
+}
+.profile {
+  border: 1px solid #ddd;
+  padding: 10px;
+  background-image: url("{% static 'media/music-play.jpg' %}");
+  background-size: 100%;
+  background-position: center;
+}
+.profile-body h2 {
+  margin-top: 50px;
+}
+
+.profile-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-body li {
+  margin-top: 30px;
+}
+</style>
+
+{% endblock %}
