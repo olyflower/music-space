@@ -44,8 +44,90 @@
             display: flex;
             bottom: 0;
             width: 100%;
-            height: 80px;
+            height: 100px;
             background-color: #333333;
+            padding: 15px;
+            gap: 180px;
+        }
+
+        .player * {
+            color: #fff;
+        }
+
+        .player a {
+            text-decoration: none;
+        }
+
+        .player__info {
+            display: flex;
+            gap: 10px;
+        }
+
+        .player__info__artist {
+            font-size: 14px;
+            color: #bbb;
+        }
+
+        .player__info__image {
+            height: 100%;
+        }
+
+        .player__info__track {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .player__controls {
+            flex: 1 1 auto;
+        }
+
+        .player__volume {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .player__volume__icon {
+            width: 30px;
+        }
+
+        .player__volume__slider {
+            height: 30px;
+            width: 100px;
+            -webkit-appearance: none;
+            background: transparent;
+        }
+
+        .player__volume__slider::-webkit-slider-runnable-track {
+            height: 6px;
+            border-radius: 7px;
+            cursor: pointer;
+            background-color: #fff;
+        }
+
+        .player__volume__slider::-webkit-slider-thumb {
+            margin-top: -4px;
+            width: 14px;
+            height: 14px;
+            -webkit-appearance: none;
+            background: #fff;
+            border-radius: 50%;
+            {#display: none;#}
+        }
+
+        .player__volume__slider::-webkit-slider-runnable-track:hover {
+            background: #1ed760;
+        }
+
+        .player__volume__slider::-webkit-slider-runnable-track:hover + .player__volume__slider::-webkit-slider-thumb {
+            display: none;
+        }
+
+        html {
+            overflow: hidden;
         }
 
     </style>
@@ -121,7 +203,7 @@
     <div class="player">
 
         <div class="player__info">
-            <img src="" alt="" class="player__info__image">
+            <img src="{% static 'media/album_icon.svg' %}" alt="" class="player__info__image">
             <div class="player__info__track">
                 <a href="" class="player__info__title">Album</a>
                 <a href="" class="player__info__artist">Artist</a>
@@ -129,13 +211,10 @@
         </div>
 
         <div class="player__controls"></div>
-        <div class="player__controls_play">
-            <a href="" class="player__controls_play">Play</a>
-        </div>
 
-        <div class="player__volume"></div>
-        <div class="player__volume_button">
-            <a href="" class="player__volume_button">Volume</a>
+        <div class="player__volume">
+            <img src="{% static 'media/volume_icon.svg' %}" alt="" class="player__volume__icon">
+            <input type="range" name="" min="0" max="100" value="100" class="player__volume__slider">
         </div>
 
     </div>
