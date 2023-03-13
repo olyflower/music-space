@@ -88,8 +88,6 @@ class UserProfile(models.Model):
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES)
     user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES)
     bio = models.TextField(null=True, blank=True)
-    photo = models.ImageField(upload_to="user_profile_photo/", blank=True, null=True)
     favourite_genres = models.CharField(max_length=30, choices=GENRE_CHOICES)
     website = models.URLField(max_length=200, null=True, blank=True)
-    city = models.CharField(max_length=200, null=True)
     postcode = models.CharField(max_length=100, null=True)
