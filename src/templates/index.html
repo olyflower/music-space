@@ -160,10 +160,10 @@
                     <div class="dropdown text-end">
                         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle show"
                            data-bs-toggle="dropdown" aria-expanded="true">
-                            <img src="{% static 'media/icons8-user.png' %}" alt="mdo" width="32" height="32"
+                            <img src="{% static 'media/login.svg' %}" alt="mdo" width="32" height="32"
                                  class="rounded-circle">
                         </a>
-                        <ul class="dropdown-menu text-small show" data-popper-placement="bottom-start"
+                        <ul class="dropdown-menu text-small" data-popper-placement="bottom-start"
                             style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 34.4px, 0px);">
                             <li><a class="dropdown-item" href="{% url 'core:login' %}">Login</a></li>
                             {% if user.is_authenticated %}
