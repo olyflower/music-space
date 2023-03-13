@@ -1,8 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
-from django.views.generic import ListView
+from django.views.generic import DetailView, ListView
 
-from music.models import Track
+from music.models import Genre, Track
 
 
 class GetTracksView(LoginRequiredMixin, ListView):
@@ -21,3 +21,24 @@ class GetTracksView(LoginRequiredMixin, ListView):
             return Track.objects.filter(or_filter)
 
         return Track.objects.all()
+
+
+class GetGenresView(LoginRequiredMixin, ListView):
+    login_url = "core:login"
+    redirect_field_name = "index"
+    template_name = "music/genre_list.html"
+    model = Genre
+
+
+class GenreDetailView(LoginRequiredMixin, DetailView):
+    login_url = "core:login"
+    redirect_field_name = "index"
+    template_name = "music/genre_detail.html"
+    model = Genre
+
+
+class TrackDetailView(LoginRequiredMixin, DetailView):
+    login_url = "core:login"
+    redirect_field_name = "index"
+    template_name = "music/track_detail.html"
+    model = Track

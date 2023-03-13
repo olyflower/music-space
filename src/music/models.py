@@ -2,6 +2,7 @@ import random
 
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.urls import reverse
 from faker import Faker
 
 from core.models import BaseModel
@@ -17,6 +18,9 @@ class Track(BaseModel):
 
     class Meta:
         ordering = ["title"]
+
+    def get_absolute_url(self):
+        return reverse("music:track_detail", kwargs={"pk": self.pk})
 
     def __str__(self):
         return f"{self.title} ({self.pk})"
@@ -97,3 +101,6 @@ class Genre(BaseModel):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("music:genre_detail", kwargs={"pk": self.pk})
