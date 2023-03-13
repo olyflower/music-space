@@ -21,14 +21,14 @@ if os.environ.get("GITHUB_WORKFLOW"):
     }
 else:
     DATABASES = {
-        # "default_local": {
-        #     "ENGINE": "django.db.backends.postgresql",
-        #     "NAME": "my_database",
-        #     "USER": "postgres",
-        #     "PASSWORD": "admin",
-        #     "HOST": "localhost",
-        #     "PORT": 5432,
-        # },
+        "default_local": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "yudina_olga_db",
+            "USER": "postgres",
+            "PASSWORD": "admin",
+            "HOST": "localhost",
+            "PORT": 5432,
+        },
         "default_sqlite": {
             "ENGINE": "django.db.backends.sqlite3",
             "NAME": BASE_DIR / "db.sqlite3",
