@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.validators import UnicodeUsernameValidator
@@ -59,3 +60,34 @@ class Customer(AbstractBaseUser, PermissionsMixin):
 
     def get_working_time(self):
         return f"Time on site: {timezone.now() - self.date_joined}"
+
+
+class UserProfile(models.Model):
+    GENDER_CHOICES = (
+        ("Male", "Male"),
+        ("Female", "Female"),
+    )
+    USER_TYPE_CHOICES = (
+        ("User", "User"),
+        ("Musician", "Musician"),
+    )
+    GENRE_CHOICES = (
+        ("Rock", "Rock"),
+        ("Pop", "Pop"),
+        ("Hip Hop", "Hip Hop"),
+        ("Jazz", "Jazz"),
+        ("Blues", "Blues"),
+        ("Country", "Country"),
+        ("Folk", "Folk"),
+        ("Reggae", "Reggae"),
+        ("R&B", "R&B"),
+        ("Soul", "Soul"),
+        ("Funk", "Funk"),
+    )
+    user = models.OneToOneField(get_user_model(), related_name="profile", on_delete=models.CASCADE)
+    gender = models.CharField(max_length=6, choices=GENDER_CHOICES)
+    user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES)
+    bio = models.TextField(null=True, blank=True)
+    favourite_genres = models.CharField(max_length=30, choices=GENRE_CHOICES)
+    website = models.URLField(max_length=200, null=True, blank=True)
+    postcode = models.CharField(max_length=100, null=True)
