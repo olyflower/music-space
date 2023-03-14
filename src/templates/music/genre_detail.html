@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+  <h1>{{ genre.name }}</h1>
+  <img src="{% static 'media/music-genres.jpg' %}" alt="Music genre" style="float: right; max-width: 45%;">
+  <p>{{ genre.description }}</p>
+</div>
+<style>
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 30px;
+}
+
+.container img {
+  max-width: 55%;
+  margin-right: 30px;
+}
+
+.container p {
+  flex: 1;
+}
+</style>
+{% endblock %}
