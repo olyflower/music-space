@@ -6,12 +6,14 @@ services:
     container_name: music_container
     working_dir: /music
     command:
-      - ./commands/start_server.sh
+      - ./commands/start_server_${MODE}.sh
     ports:
       - 8010:8000
     volumes:
       - ./src:/music/src
       - ./commands:/music/commands
+      - static_content:/music/static1
+      - media_content:/music/media
     env_file:
       - .env
     depends_on:
@@ -64,7 +66,23 @@ services:
     depends_on:
       - mongodb
 
+  nginx:
+    image: nginx:1.19
+    volumes:
+      - static_content:/music/src/static
+      - media_content:/music/src/media
+      - ./nginx:/etc/nginx/conf.d
+    ports:
+      - 80:80
+      - 443:443
+    env_file:
+      - .env
+    depends_on:
+      - backend
+
 volumes:
+  static_content: { }
+  media_content: { }
   mongo_data: { }
   pg_data: { }
   pgadmin_data: { }

@@ -130,6 +130,7 @@
             overflow: hidden;
         }
 
+
     </style>
 
     <link href="cover.css" rel="stylesheet">
@@ -160,26 +161,26 @@
                     <div class="dropdown text-end">
                         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle show"
                            data-bs-toggle="dropdown" aria-expanded="true">
-                            <img src="{% static 'media/login.svg' %}" alt="mdo" width="32" height="32"
+                            <img src="{% static 'login.svg' %}" alt="mdo" width="32" height="32"
                                  class="rounded-circle">
                         </a>
                         <ul class="dropdown-menu text-small" data-popper-placement="bottom-start"
                             style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 34.4px, 0px);">
                             <li><a class="dropdown-item" href="{% url 'core:login' %}">Login</a></li>
                             {% if user.is_authenticated %}
-                                <li><a class="dropdown-item">{{ user.first_name|title }} {{ user.last_name|title }}</a>
-                                </li>
-                                <li><a class="dropdown-item" href="{% url 'core:user_profile' %}">Profile</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="{% url 'core:logout' %}">Logout</a></li>
+                            <li><a class="dropdown-item">{{ user.first_name|title }} {{ user.last_name|title }}</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'core:user_profile' %}">Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'core:logout' %}">Logout</a></li>
                             {% else %}
-                                <li><a class="dropdown-item" href="{% url 'core:registration' %}">Registration</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="{% url 'core:logout' %}">Logout</a></li>
+                            <li><a class="dropdown-item" href="{% url 'core:registration' %}">Registration</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'core:logout' %}">Logout</a></li>
                             {% endif %}
                         </ul>
                     </div>
@@ -196,14 +197,14 @@
 
     <main class="px-3">
         {% block content %}
-            <img src="{% static 'media/music.jpg' %}" width="800" height="405" alt="Music">
+        <img src="{% static 'music.jpg' %}" width="800" height="405" alt="Music">
         {% endblock %}
     </main>
 
     <div class="player">
 
         <div class="player__info">
-            <img src="{% static 'media/album_icon.svg' %}" alt="" class="player__info__image">
+            <img src="{% static 'album_icon.svg' %}" alt="" class="player__info__image">
             <div class="player__info__track">
                 <a href="" class="player__info__title">Album</a>
                 <a href="" class="player__info__artist">Artist</a>
@@ -213,7 +214,7 @@
         <div class="player__controls"></div>
 
         <div class="player__volume">
-            <img src="{% static 'media/volume_icon.svg' %}" alt="" class="player__volume__icon">
+            <img src="{% static 'volume_icon.svg' %}" alt="" class="player__volume__icon">
             <input type="range" name="" min="0" max="100" value="100" class="player__volume__slider">
         </div>
 
