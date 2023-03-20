@@ -8,12 +8,11 @@ services:
     command:
       - ./commands/start_server_${MODE}.sh
     ports:
-      - 8010:8000
+      - ${LOCAL_PORT}:${WSGI_PORT}
     volumes:
       - ./src:/music/src
-      - ./commands:/music/commands
-      - static_content:/music/static1
-      - media_content:/music/media
+      - static_content:/music/src/static1
+      - media_content:/music/src/media
     env_file:
       - .env
     depends_on:
@@ -79,6 +78,65 @@ services:
       - .env
     depends_on:
       - backend
+
+  redis:
+    image: redis
+    env_file:
+      - .env
+    restart: on-failure
+    depends_on:
+      - backend
+
+  celery:
+    build: ./
+    command:
+      - ./commands/start_celery.sh
+    restart: always
+    volumes:
+      - ./src:/music
+      - ./commands:/music/commands
+    env_file:
+        - .env
+    depends_on:
+        - redis
+        - backend
+
+  celerybeat:
+    build: ./
+    command:
+      - ./commands/start_celerybeat.sh
+    restart: always
+    volumes:
+      - ./src:/music
+      - ./commands:/music/commands
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - backend
+
+  flower:
+    build: ./
+    volumes:
+      - ./src:/music
+    env_file:
+      - .env
+    command: celery -A config flower --broker=redis://redis
+    ports:
+      - 5556:5555
+    depends_on:
+      - celery
+      - redis
+
+  redisadmin:
+    image: rediscommander/redis-commander:latest
+    container_name: redisadmin
+    hostname: redisadmin
+    restart: always
+    ports:
+      - 8092:8081
+    env_file:
+      - .env
 
 volumes:
   static_content: { }

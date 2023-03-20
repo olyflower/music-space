@@ -1,7 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from django.http import HttpResponse
 from django.views.generic import DetailView, ListView
-
+from music.tasks import generate_artists, generate_genres, generate_albums, generate_tracks
 from music.models import Genre, Track
 
 
@@ -42,3 +43,23 @@ class TrackDetailView(LoginRequiredMixin, DetailView):
     redirect_field_name = "index"
     template_name = "music/track_detail.html"
     model = Track
+
+
+def genres(request, count):
+    generate_genres.delay(count)
+    return HttpResponse("Task started")
+
+
+def artists(request, count):
+    generate_artists.delay(count)
+    return HttpResponse("Task started")
+
+
+def albums(request, count):
+    generate_albums.delay(count)
+    return HttpResponse("Task started")
+
+
+def tracks(request, count):
+    generate_tracks.delay(count)
+    return HttpResponse("Task started")
