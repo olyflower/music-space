@@ -2,8 +2,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.http import HttpResponse
 from django.views.generic import DetailView, ListView
-from music.tasks import generate_artists, generate_genres, generate_albums, generate_tracks
+
 from music.models import Genre, Track
+from music.tasks import (generate_albums, generate_artists, generate_genres,
+                         generate_tracks)
 
 
 class GetTracksView(LoginRequiredMixin, ListView):

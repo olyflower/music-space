@@ -87,7 +87,21 @@ services:
     depends_on:
       - backend
 
-  celery:
+#  celery:
+#    build: ./
+#    command:
+#      - ./commands/start_celery.sh
+#    restart: always
+#    volumes:
+#      - ./src:/music
+#      - ./commands:/music/commands
+#    env_file:
+#        - .env
+#    depends_on:
+#        - redis
+#        - backend
+
+  celery-flower:
     build: ./
     command:
       - ./commands/start_celery.sh
@@ -96,10 +110,12 @@ services:
       - ./src:/music
       - ./commands:/music/commands
     env_file:
-        - .env
+      - .env
+    ports:
+      - 5556:5555
     depends_on:
-        - redis
-        - backend
+      - redis
+      - backend
 
   celerybeat:
     build: ./
@@ -115,18 +131,18 @@ services:
       - redis
       - backend
 
-  flower:
-    build: ./
-    volumes:
-      - ./src:/music
-    env_file:
-      - .env
-    command: celery -A config flower --broker=redis://redis
-    ports:
-      - 5556:5555
-    depends_on:
-      - celery
-      - redis
+#  flower:
+#    build: ./
+#    volumes:
+#      - ./src:/music
+#    env_file:
+#      - .env
+#    command: celery -A config flower --broker=redis://redis
+#    ports:
+#      - 5556:5555
+#    depends_on:
+#      - celery
+#      - redis
 
   redisadmin:
     image: rediscommander/redis-commander:latest
