@@ -11,7 +11,7 @@ urlpatterns = [
     path("genre/<int:pk>/", GenreDetailView.as_view(), name="genre_detail"),
     path("track/<int:pk>/", TrackDetailView.as_view(), name="track_detail"),
     path("generate-artists/<int:count>/", artists, name="generate_artists"),
-    path("generate-genres/<int:count>/", genres, name="generate_genres"),
+    path("generate-genres", genres, name="generate_genres"),
     path("generate-albums/<int:count>/", albums, name="generate_albums"),
     path("generate-tracks/<int:count>/", tracks, name="generate_tracks"),
 ]

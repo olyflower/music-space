@@ -47,8 +47,8 @@ class TrackDetailView(LoginRequiredMixin, DetailView):
     model = Track
 
 
-def genres(request, count):
-    generate_genres.delay(count)
+def genres(request):
+    generate_genres.delay()
     return HttpResponse("Task started")
 
 
