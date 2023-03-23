@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.http import HttpResponse
 from django.views.generic import DetailView, ListView
 
-from music.models import Genre, Track
+from music.models import Genre, Playlist, Track
 from music.tasks import (generate_albums, generate_artists, generate_genres,
                          generate_tracks)
 
@@ -26,6 +26,13 @@ class GetTracksView(LoginRequiredMixin, ListView):
         return Track.objects.all()
 
 
+class TrackDetailView(LoginRequiredMixin, DetailView):
+    login_url = "core:login"
+    redirect_field_name = "index"
+    template_name = "music/track_detail.html"
+    model = Track
+
+
 class GetGenresView(LoginRequiredMixin, ListView):
     login_url = "core:login"
     redirect_field_name = "index"
@@ -40,11 +47,18 @@ class GenreDetailView(LoginRequiredMixin, DetailView):
     model = Genre
 
 
-class TrackDetailView(LoginRequiredMixin, DetailView):
+class GetPlaylistView(LoginRequiredMixin, ListView):
     login_url = "core:login"
     redirect_field_name = "index"
-    template_name = "music/track_detail.html"
-    model = Track
+    template_name = "music/playlist_list.html"
+    model = Playlist
+
+
+class PlaylistDetailView(LoginRequiredMixin, DetailView):
+    login_url = "core:login"
+    redirect_field_name = "index"
+    template_name = "music/playlist_detail.html"
+    model = Playlist
 
 
 def genres(request):

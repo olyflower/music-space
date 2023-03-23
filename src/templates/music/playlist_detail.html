@@ -1,0 +1,76 @@
+<style>
+  h1 {
+    font-size: 24px;
+  }
+  table {
+    font-size: 20px;
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
+  th, td {
+    line-height: 12px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  th {
+    font-weight: bold;
+  }
+  a {
+    color: blue;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5px 30px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    height: 90%;
+  }
+  .flex-container > div {
+    flex: 1;
+    padding: 30px;
+  }
+  .flex-container > div:first-child {
+    margin-right: 50px;
+  }
+  img {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+
+</style>
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="flex-container">
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>Playlist</th>
+            </tr>
+
+            </thead>
+            <tbody>
+            {% for track in playlist.tracks.all %}
+            <tr>
+                <td><a href="{{ track.get_absolute_url }}">{{ track.title }}</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}
