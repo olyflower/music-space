@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+   <h1>Edit Profile</h1>
+   <div style="height: 650px; overflow: auto;">
+     <form method="POST" action="{% url 'core:edit_user_profile' pk=object.pk %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
+     </form>
+
+       {% endblock %}
