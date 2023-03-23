@@ -5,7 +5,8 @@
 <div class="profile">
   <div class="profile-header">
     <h1>{{ user.first_name }}</h1>
-    <img src="#" alt="Profile picture">
+    <img src="{% static 'profile_photo.svg' %}" alt="Profile picture">
+    <a href="{% url 'core:edit_user_profile' pk=user.pk %}" class="edit-profile-button">Edit Profile</a>
   </div>
   <div class="profile-body">
     <h2>About Me</h2>
@@ -16,7 +17,6 @@
       <li><strong>User Type:</strong> {{ user.profile.user_type }}</li>
       <li><strong>Favourite Genres:</strong> {{ user.profile.favourite_genres }}</li>
       <li><strong>Website:</strong> <a href="#">{{ user.profile.website }}</a></li>
-      <li><strong>City:</strong> {{ user.profile.city }}</li>
       <li><strong>Postcode:</strong> {{ user.profile.postcode }}</li>
     </ul>
   </div>
@@ -32,6 +32,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-right: 460px;
 }
 
 .profile-header img {
@@ -40,9 +41,11 @@
 .profile {
   border: 1px solid #ddd;
   padding: 10px;
-  background-image: url("{% static 'media/music-play.jpg' %}");
+  background-image: url("{% static 'music-play.jpg' %}");
   background-size: 100%;
   background-position: center;
+  border-radius: 10px;
+  margin-bottom: 120px;
 }
 .profile-body h2 {
   margin-top: 50px;
@@ -56,6 +59,7 @@
 
 .profile-body li {
   margin-top: 30px;
+  line-height: 1.0em;
 }
 </style>
 

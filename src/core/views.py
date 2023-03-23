@@ -1,12 +1,15 @@
 from django.contrib.auth import get_user_model, login
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.utils.encoding import force_str
 from django.utils.http import urlsafe_base64_decode
-from django.views.generic import CreateView, RedirectView, TemplateView
+from django.views.generic import (CreateView, RedirectView, TemplateView,
+                                  UpdateView)
 
-from core.forms import UserRegistrationForm
+from account.models import UserProfile
+from core.forms import UserProfileForm, UserRegistrationForm
 from core.services.emails import send_registration_email
 from core.utils.token_generator import TokenGenerator
 
@@ -61,5 +64,16 @@ class ActivateUser(RedirectView):
         return HttpResponse("Wrong data!!!")
 
 
-class UserProfile(TemplateView):
+class GetUserProfile(TemplateView):
     template_name = "registration/user_profile.html"
+
+
+class EditUserProfileView(LoginRequiredMixin, UpdateView):
+    login_url = "core:login"
+    model = UserProfile
+    form_class = UserProfileForm
+    template_name = "registration/edit_user_profile.html"
+    success_url = reverse_lazy("core:user_profile")
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)

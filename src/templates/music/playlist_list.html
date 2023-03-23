@@ -1,0 +1,37 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="flex-container">
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Playlists</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for playlist in object_list %}
+        <tr>
+          <td><a href="{{ playlist.get_absolute_url }}">{{ playlist.title }}</a></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<style>
+    body {
+        background-image: url('{% static 'music-play.jpg' %}');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .flex-container {
+        border: 2px solid black;
+        padding: 20px;
+        border-radius: 10px;
+    }
+</style>
+{% endblock %}

@@ -46,6 +46,7 @@
     display: block;
     margin: 0 auto;
   }
+
 </style>
 {% extends 'index.html' %}
 {% load static %}
@@ -53,24 +54,23 @@
 {% block content %}
 
 <div class="flex-container">
-  <div>
-    <table>
-      <thead>
-        <tr>
-          <th>Genre name</th>
-        </tr>
-      </thead>
-      <tbody>
-      {% for genre in object_list %}
-        <tr>
-          <td><a href="{{ genre.get_absolute_url }}">{{ genre.name }}</a></td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
-  </div>
-  <div>
-    <img src="{% static 'music-genres.jpg' %}" alt="Music genre">
-  </div>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>Playlist</th>
+            </tr>
+
+            </thead>
+            <tbody>
+            {% for track in playlist.tracks.all %}
+            <tr>
+                <td><a href="{{ track.get_absolute_url }}">{{ track.title }}</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
 </div>
 {% endblock %}

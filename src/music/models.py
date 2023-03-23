@@ -53,6 +53,9 @@ class Playlist(BaseModel):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse("music:playlist_detail", kwargs={"pk": self.pk})
+
 
 class Album(BaseModel):
     title = models.CharField(max_length=200)
