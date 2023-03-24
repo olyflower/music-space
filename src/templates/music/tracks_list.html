@@ -2,13 +2,14 @@
 {% load static %}
 
 {% block content %}
- <table class="table table-dark table-striped">
+ <table class="table table-dark table-striped track-list">
         <thead>
         <tr>
             <th scope="col">Track</th>
             <th scope="col">Artist</th>
             <th scope="col">Album</th>
             <th scope="col">Play</th>
+            <th scope="col">Add to favourite</th>
         </tr>
         </thead>
         <tbody>
@@ -19,8 +20,12 @@
                 <th>{{ track.album }}</th>
 
                 <th>
-                    <a type="button" class="btn btn-warning"
-                            href="">Play</a>
+                    <a type="button" class="btn play"
+                            href=""><i class="bi bi-play-fill"></i></a>
+                </th>
+                <th>
+                    <a type="button" class="btn heart"
+                            href=""><i class="bi bi-balloon-heart-fill"></i></a>
                 </th>
             </tr>
         {% endfor %}
