@@ -181,13 +181,14 @@
 
         .track-list .heart {
             background: #fff;
-            color: red;
+            color: limegreen;
         }
 
         .track-list .play {
             background: #fff;
             color: black;
         }
+
     </style>
 
     <link href="cover.css" rel="stylesheet">
@@ -213,7 +214,8 @@
                         <li><a href="{% url 'music:get_genres' %}" class="nav-link px-2 text-white">Music genres</a>
                         </li>
                         <li><a href="{% url 'music:get_playlist' %}" class="nav-link px-2 text-white">Playlists</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">Favourite tracks</a></li>
+                        <li><a href="{% url 'music:favourite_tracks' %}" class="nav-link px-2 text-white">Favourite
+                            tracks</a></li>
                     </ul>
                     <div class="dropdown text-end">
                         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle show"
@@ -276,8 +278,12 @@
             </div>
             <div class="player__controls__timeline">
                 <div class="player__controls__timeline__start">0:14</div>
-                <input type="range" name="" min="0" max="100" value="10" class="player__controls__timeline__slider green_slider">
+                <input type="range" name="" min="0" max="100" value="10"
+                       class="player__controls__timeline__slider green_slider">
                 <div class="player__controls__timeline__end">3:01</div>
+                <div class="player__controls__buttons__favourite player__controls__button" onclick="addToFavourites()">
+                    <i class="bi bi-heart"></i>
+                </div>
             </div>
         </div>
 

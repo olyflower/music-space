@@ -1,11 +1,14 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.http import HttpResponse
-from django.views.generic import DetailView, ListView
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.views import View
+from django.views.generic import DeleteView, DetailView, ListView
 
-from music.models import Genre, Playlist, Track
+from music.models import FavoriteTrack, Genre, Playlist, Track
 from music.tasks import (generate_albums, generate_artists, generate_genres,
-                         generate_tracks)
+                         generate_tracks, test_task)
 
 
 class GetTracksView(LoginRequiredMixin, ListView):
@@ -61,6 +64,30 @@ class PlaylistDetailView(LoginRequiredMixin, DetailView):
     model = Playlist
 
 
+class GetFavoriteTrackView(LoginRequiredMixin, ListView):
+    login_url = "core:login"
+    redirect_field_name = "index"
+    template_name = "music/favourite_tracks.html"
+    model = FavoriteTrack
+
+
+class AddToFavoritesView(View):
+    def post(self, request, pk):
+        track = Track.objects.get(pk=pk)
+        favorite_track = FavoriteTrack(user=request.user, track=track)
+        favorite_track.save()
+        return redirect("music:favourite_tracks")
+
+
+class DeleteFavoriteTrackView(LoginRequiredMixin, DeleteView):
+    template_name = "music/favorite_track_delete.html"
+    model = FavoriteTrack
+    success_url = reverse_lazy("music:favourite_tracks")
+
+    def get_queryset(self):
+        return FavoriteTrack.objects.filter(user=self.request.user)
+
+
 def genres(request):
     generate_genres.delay()
     return HttpResponse("Task started")
@@ -78,4 +105,9 @@ def albums(request, count):
 
 def tracks(request, count):
     generate_tracks.delay(count)
+    return HttpResponse("Task started")
+
+
+def test(request):
+    test_task.delay()
     return HttpResponse("Task started")

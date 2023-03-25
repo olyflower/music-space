@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+  <h1>Favorite Tracks</h1>
+  <ul>
+    {% for track in object_list %}
+      <li>
+        {{ track.track.title }} by {{ track.track.artist }}
+        <form action="{% url 'music:delete_favourite_track' track.pk %}" method="post">
+          {% csrf_token %}
+          <button type="submit">Remove from favorites</button>
+        </form>
+      </li>
+    {% empty %}
+      <p>You haven't added any tracks to your favorites yet.</p>
+    {% endfor %}
+  </ul>
+{% endblock %}

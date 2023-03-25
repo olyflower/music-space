@@ -31,7 +31,7 @@ class Customer(AbstractBaseUser, PermissionsMixin):
     )
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
     birth_date = models.DateField(null=True, blank=True)
-    avatar = models.ImageField(upload_to="media/img/profiles", blank=True)
+    avatar = models.ImageField(upload_to="avatars/", blank=True)
     city = models.CharField(max_length=255, blank=True)
 
     objects = CustomerManager()
