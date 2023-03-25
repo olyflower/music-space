@@ -11,8 +11,8 @@ services:
       - ${LOCAL_PORT}:${WSGI_PORT}
     volumes:
       - ./src:/music/src
-      - static_content:/music/src/static1
-      - media_content:/music/src/media
+      - static_content:/music/src/static_cl
+      - media_content:/music/src/media_cl
     env_file:
       - .env
     depends_on:

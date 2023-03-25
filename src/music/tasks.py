@@ -7,6 +7,11 @@ from music.models import Album, Artist, Genre, Track
 
 
 @shared_task
+def test_task():
+    print('Print this test task')
+
+
+@shared_task
 def generate_artists(count):
     faker = Faker()
     for _ in range(count):
@@ -28,7 +33,7 @@ def generate_tracks(count):
     for _ in range(count):
         Track.objects.create(
             title=faker.sentence(),
-            length=random.randint(50, 500),
+            length=random.randint(100, 600),
             create_date=faker.date(),
             artist=random.choice(Artist.objects.all()),
             album=random.choice(Album.objects.all()),

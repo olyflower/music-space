@@ -15,6 +15,7 @@ class Track(BaseModel):
     create_date = models.DateField(null=True, blank=True)
     track_file = models.FileField(upload_to="tracks/", blank=True)
     album = models.ForeignKey(to="music.Album", related_name="tracks", on_delete=models.CASCADE)
+    play_count = models.IntegerField(default=0)
 
     class Meta:
         ordering = ["title"]
@@ -35,7 +36,7 @@ class Track(BaseModel):
         for _ in range(count):
             cls.objects.create(
                 title=faker.sentence(),
-                length=random.randint(50, 500),
+                length=random.randint(100, 600),
                 create_date=faker.date(),
                 artist=random.choice(Artist.objects.all()),
                 album=random.choice(Album.objects.all()),
@@ -61,7 +62,7 @@ class Album(BaseModel):
     title = models.CharField(max_length=200)
     description = models.TextField(default="description", null=True)
     genre = models.ForeignKey(to="music.Genre", null=True, related_name="genres", on_delete=models.CASCADE)
-    image = models.ImageField(default="default.png", upload_to="media/covers")
+    image = models.ImageField(default="default.png", upload_to="covers/")
 
     class Meta:
         ordering = ["title"]
@@ -107,3 +108,8 @@ class Genre(BaseModel):
 
     def get_absolute_url(self):
         return reverse("music:genre_detail", kwargs={"pk": self.pk})
+
+
+class FavoriteTrack(BaseModel):
+    user = models.ForeignKey(to=get_user_model(), on_delete=models.CASCADE)
+    track = models.ForeignKey(to="music.Track", on_delete=models.CASCADE)
