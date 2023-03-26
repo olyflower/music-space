@@ -145,9 +145,6 @@ CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TASK_SERIALIZER = "json"
 
-CELERY_BEAT_SCHEDULE = {
-    "some_periodic_task": {
-        "task": "music.tasks.test_task",
-        "schedule": crontab(minute="*/1")
-    }
-}
+CELERY_TIMEZONE = "Europe/Kyiv"
+
+CELERY_BEAT_SCHEDULE = {"some_periodic_task": {"task": "music.tasks.test_task", "schedule": crontab(minute="*/25")}}

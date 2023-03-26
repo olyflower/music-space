@@ -3,7 +3,8 @@ from django.urls import path
 from music.views import (AddToFavoritesView, DeleteFavoriteTrackView,
                          GenreDetailView, GetFavoriteTrackView, GetGenresView,
                          GetPlaylistView, GetTracksView, PlaylistDetailView,
-                         TrackDetailView, albums, artists, genres, tracks, test)
+                         TrackDetailView, albums, artists, genres, test,
+                         track_count, tracks)
 
 app_name = "music"
 
@@ -17,6 +18,7 @@ urlpatterns = [
     path("favorite-tracks/", GetFavoriteTrackView.as_view(), name="favourite_tracks"),
     path("add-to-favorite/<int:pk>/", AddToFavoritesView.as_view(), name="add_to_favorite"),
     path("favorite-tracks/<int:pk>/delete/", DeleteFavoriteTrackView.as_view(), name="delete_favourite_track"),
+    path("tracks/top/", track_count, name="top_tracks"),
     path("generate-artists/<int:count>/", artists, name="generate_artists"),
     path("generate-genres", genres, name="generate_genres"),
     path("generate-albums/<int:count>/", albums, name="generate_albums"),

@@ -8,7 +8,7 @@ from music.models import Album, Artist, Genre, Track
 
 @shared_task
 def test_task():
-    print('Print this test task')
+    print("Print this test task")
 
 
 @shared_task

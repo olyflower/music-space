@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import DeleteView, DetailView, ListView
@@ -86,6 +86,11 @@ class DeleteFavoriteTrackView(LoginRequiredMixin, DeleteView):
 
     def get_queryset(self):
         return FavoriteTrack.objects.filter(user=self.request.user)
+
+
+def track_count(request):
+    tracks = Track.objects.order_by("-play_count")
+    return render(request, "music/top_tracks.html", {"tracks": tracks})
 
 
 def genres(request):
