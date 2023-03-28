@@ -1,10 +1,11 @@
 from django.urls import path
 
-from music.views import (AddToFavoritesView, DeleteFavoriteTrackView,
+from music.views import (AddToFavoritesView, CreatePlaylistView,
+                         DeleteFavoriteTrackView, DeletePlaylistView,
                          GenreDetailView, GetFavoriteTrackView, GetGenresView,
                          GetPlaylistView, GetTracksView, PlaylistDetailView,
-                         TrackDetailView, albums, artists, genres, test,
-                         track_count, tracks)
+                         TrackDetailView, UpdatePlaylistView, albums, artists,
+                         genres, test, track_count, tracks)
 
 app_name = "music"
 
@@ -23,5 +24,8 @@ urlpatterns = [
     path("generate-genres", genres, name="generate_genres"),
     path("generate-albums/<int:count>/", albums, name="generate_albums"),
     path("generate-tracks/<int:count>/", tracks, name="generate_tracks"),
+    path("playlist/create/", CreatePlaylistView.as_view(), name="playlist_create"),
+    path("playlist/<int:pk>/edit/", UpdatePlaylistView.as_view(), name="playlist_edit"),
+    path("playlist/<int:pk>/delete/", DeletePlaylistView.as_view(), name="playlist_delete"),
     path("test-task/", test, name="test_task"),
 ]

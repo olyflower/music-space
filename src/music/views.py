@@ -1,11 +1,13 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import DeleteView, DetailView, ListView
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  UpdateView)
 
+from music.forms import PlaylistForm
 from music.models import FavoriteTrack, Genre, Playlist, Track
 from music.tasks import (generate_albums, generate_artists, generate_genres,
                          generate_tracks, test_task)
@@ -57,11 +59,44 @@ class GetPlaylistView(LoginRequiredMixin, ListView):
     model = Playlist
 
 
+class CreatePlaylistView(LoginRequiredMixin, CreateView):
+    login_url = "core:login"
+    redirect_field_name = "index"
+    template_name = "music/playlist_create.html"
+    form_class = PlaylistForm
+    success_url = reverse_lazy("music:get_playlist")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class UpdatePlaylistView(LoginRequiredMixin, UpdateView):
+    template_name = "music/playlist_edit.html"
+    form_class = PlaylistForm
+    success_url = reverse_lazy("music:get_playlist")
+    queryset = Playlist.objects.all()
+
+
+class DeletePlaylistView(LoginRequiredMixin, DeleteView):
+    success_url = reverse_lazy("music:get_playlist")
+    model = Playlist
+
+
 class PlaylistDetailView(LoginRequiredMixin, DetailView):
     login_url = "core:login"
     redirect_field_name = "index"
     template_name = "music/playlist_detail.html"
     model = Playlist
+
+    def post(self, request, *args, **kwargs):
+        playlist = self.get_object()
+        if "remove_track" in request.POST:
+            track_id = int(request.POST["remove_track"])
+            track = get_object_or_404(Track, pk=track_id)
+            playlist.tracks.remove(track)
+
+        return self.get(request, *args, **kwargs)
 
 
 class GetFavoriteTrackView(LoginRequiredMixin, ListView):
@@ -74,8 +109,10 @@ class GetFavoriteTrackView(LoginRequiredMixin, ListView):
 class AddToFavoritesView(View):
     def post(self, request, pk):
         track = Track.objects.get(pk=pk)
-        favorite_track = FavoriteTrack(user=request.user, track=track)
-        favorite_track.save()
+        favorite_track_exists = FavoriteTrack.objects.filter(user=request.user, track=track).exists()
+        if not favorite_track_exists:
+            favorite_track = FavoriteTrack(user=request.user, track=track)
+            favorite_track.save()
         return redirect("music:favourite_tracks")
 
 

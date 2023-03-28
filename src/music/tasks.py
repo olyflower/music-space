@@ -1,6 +1,9 @@
+import os
 import random
 
 from celery import shared_task
+from django.conf import settings
+from django.core.files import File
 from faker import Faker
 
 from music.models import Album, Artist, Genre, Track
@@ -30,14 +33,18 @@ def generate_albums(count):
 @shared_task
 def generate_tracks(count):
     faker = Faker()
+    filepath = os.path.join(settings.MEDIA_ROOT, "tracks/OneRepublic-West-Coast.mp3")
     for _ in range(count):
-        Track.objects.create(
+        track = Track.objects.create(
             title=faker.sentence(),
             length=random.randint(100, 600),
             create_date=faker.date(),
             artist=random.choice(Artist.objects.all()),
             album=random.choice(Album.objects.all()),
+            play_count=random.randint(1, 100),
         )
+        with open(filepath, "rb") as f:
+            track.track_file.save("OneRepublic-West-Coast.mp3", File(f))
 
 
 @shared_task
