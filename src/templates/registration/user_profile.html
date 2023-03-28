@@ -3,23 +3,23 @@
 
 {% block content %}
 <div class="profile">
-  <div class="profile-header">
-    <h1>{{ user.first_name }}</h1>
-    <img src="{% static 'profile_photo.svg' %}" alt="Profile picture">
-    <a href="{% url 'core:edit_user_profile' pk=user.pk %}" class="edit-profile-button">Edit Profile</a>
-  </div>
-  <div class="profile-body">
-    <h2>About Me</h2>
-    <p>{{ user.profile.bio }}</p>
-    <h2>Details</h2>
-    <ul>
-      <li><strong>Gender:</strong> {{ user.profile.gender }}</li>
-      <li><strong>User Type:</strong> {{ user.profile.user_type }}</li>
-      <li><strong>Favourite Genres:</strong> {{ user.profile.favourite_genres }}</li>
-      <li><strong>Website:</strong> <a href="#">{{ user.profile.website }}</a></li>
-      <li><strong>Postcode:</strong> {{ user.profile.postcode }}</li>
-    </ul>
-  </div>
+    <div class="profile-header">
+        <h1>{{ user.first_name }}</h1>
+        <img src="{% static 'profile_photo.svg' %}" alt="Profile picture">
+        <a href="{% url 'core:edit_user_profile' pk=user.pk %}" class="btn btn-lg edit-profile-button">Edit Profile</a>
+    </div>
+    <div class="profile-body">
+        <h2>About Me</h2>
+        <p>{{ user.profile.bio }}</p>
+        <h2>Details</h2>
+        <ul>
+            <li><strong>Gender:</strong> {{ user.profile.gender }}</li>
+            <li><strong>User Type:</strong> {{ user.profile.user_type }}</li>
+            <li><strong>Favourite Genres:</strong> {{ user.profile.favourite_genres }}</li>
+            <li><strong>Website:</strong> <a href="#">{{ user.profile.website }}</a></li>
+            <li><strong>Postcode:</strong> {{ user.profile.postcode }}</li>
+        </ul>
+    </div>
 </div>
 
 <style>
@@ -27,7 +27,9 @@
   border: 1px solid #ddd;
   padding: 10px;
 }
-
+a {
+  color: white;
+}
 .profile-header {
   display: flex;
   align-items: center;
@@ -61,6 +63,12 @@
   margin-top: 30px;
   line-height: 1.0em;
 }
+.edit-profile-button {
+  color: white;
+  font-size: 24px;
+  padding: 10px 20px;
+  border: 2px solid white;
+  border-radius: 5px;
+}
 </style>
-
 {% endblock %}

@@ -47,7 +47,7 @@
             bottom: 0;
             width: 100%;
             height: 100px;
-            background-color: #333333;
+            background-color: #2e092f59;
             padding: 15px;
             gap: 180px;
         }
@@ -188,6 +188,18 @@
             background: #fff;
             color: black;
         }
+        img:hover {
+        margin: 10px;
+        border: 1px solid #ccc;
+        box-shadow: 1px 1px 5px #ccc;
+        }
+        body {
+        background-image: url({% static 'fon.jpg' %});
+        }
+        .overlay-text {
+        font-size: 45px;
+        }
+
 
     </style>
 
@@ -198,7 +210,7 @@
 <div class="cover-container d-flex w-100 h-100 mx-auto flex-column">
     <header class="mb-auto p-3">
         <div>
-            <h3 class="float-md-start mb-0">Music-space</h3>
+            <h2 class="float-md-start mb-0" style="font-family: 'Arial Black', sans-serif;">Music-space</h2>
             <nav class="nav nav-masthead justify-content-center float-md-end">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                     <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -209,7 +221,8 @@
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="{% url 'core:index' %}" class="nav-link px-2 text-white">Home</a></li>
-                        <li><a href="{% url 'music:top_tracks' %}" class="nav-link px-2 text-white">Top 10 tracks</a></li>
+                        <li><a href="{% url 'music:top_tracks' %}" class="nav-link px-2 text-white">Top 10</a>
+                        </li>
                         <li><a href="{% url 'music:get_tracks' %}" class="nav-link px-2 text-white">Tracks</a></li>
                         <li><a href="{% url 'music:get_genres' %}" class="nav-link px-2 text-white">Music genres</a>
                         </li>
@@ -256,7 +269,29 @@
 
     <main class="px-3">
         {% block content %}
-        <img src="{% static 'music.jpg' %}" width="900" height="420" alt="Music">
+        <main class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="text-overlay">
+                        <img src="{% static 'unsplash.jpg' %}" width="430" height="300" alt="Music">
+                        <div class="overlay-text">MUSIC</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-overlay">
+                        <img src="{% static 'unsplash.jpg' %}" width="430" height="300" alt="Music">
+                        <div class="overlay-text">IS</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-overlay">
+                        <img src="{% static 'unsplash.jpg' %}" width="430" height="300" alt="Music">
+                        <div class="overlay-text">LIVE</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
         {% endblock %}
     </main>
 
@@ -278,7 +313,7 @@
             </div>
             <div class="player__controls__timeline">
                 <div class="player__controls__timeline__start">0:14</div>
-                <input type="range" name="" min="0" max="100" value="10"
+                <input type="range" min="0" max="100" value="0"
                        class="player__controls__timeline__slider green_slider">
                 <div class="player__controls__timeline__end">3:01</div>
                 <div class="player__controls__buttons__favourite player__controls__button" onclick="addToFavourites()">
@@ -289,7 +324,7 @@
 
         <div class="player__volume">
             <img src="{% static 'volume_icon.svg' %}" alt="" class="player__volume__icon">
-            <input type="range" name="" min="0" max="100" value="100" class="player__volume__slider green_slider">
+            <input type="range" min="0" max="1" step="0.01" value="1" class="player__volume__slider green_slider">
         </div>
 
     </div>
@@ -298,6 +333,83 @@
 
     </footer>
 </div>
+
+<audio class="main-audio">
+    <source src="" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<script>
+    let mainAudio = document.querySelector(`.main-audio`);
+    let currentId = 0;
+    let play = false;
+    let isChanging = false;
+
+    function playTrack (id) {
+        currentId = id;
+        mainAudio.pause();
+        mainAudio.currentTime = 0;
+        mainAudio.querySelector('source').src = queue[currentId];
+        mainAudio.load();
+        mainAudio.play();
+        play = true;
+        document.querySelector('.player__controls__buttons__play').style.background = `url({% static 'pause.svg' %})`;
+        document.querySelector('.player__controls__buttons__play').style.backgroundSize = `100% 100%`;
+    }
+
+    document.querySelector('.player__controls__buttons__previous').addEventListener('click', () => {
+        playTrack(--currentId);
+    });
+
+    document.querySelector('.player__controls__buttons__play').addEventListener('click', () => {
+        if (play) {
+            mainAudio.pause();
+            document.querySelector('.player__controls__buttons__play').style.background = `url({% static 'pause.svg' %})`;
+        } else {
+            mainAudio.play();
+            document.querySelector('.player__controls__buttons__play').style.background = `url({% static 'play.svg' %})`;
+        }
+        play = !play;
+        document.querySelector('.player__controls__buttons__play').style.backgroundSize = `100% 100%`;
+    });
+
+    document.querySelector('.player__controls__buttons__next').addEventListener('click', () => {
+        playTrack(++currentId);
+    });
+
+    setInterval(() => {
+        if (isChanging) return;
+        document.querySelector('.player__controls__timeline__slider').max = Math.ceil(mainAudio.duration);
+        document.querySelector('.player__controls__timeline__slider').value = parseInt(mainAudio.currentTime);
+        document.querySelector('.player__controls__timeline__slider').setAttribute('value', parseInt(mainAudio.currentTime));
+        document.querySelector('.player__controls__timeline__start').innerText = Math.floor(mainAudio.currentTime / 60) + ':' + Math.ceil(mainAudio.currentTime % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false });
+        document.querySelector('.player__controls__timeline__end').innerText = Math.floor(mainAudio.duration / 60) + ':' + Math.ceil(mainAudio.duration % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false });
+    }, 1000);
+
+    document.querySelector('.player__controls__timeline__slider').addEventListener('mousedown', () => {
+        isChanging = true;
+    });
+
+    document.querySelector('.player__controls__timeline__slider').addEventListener('mouseup', () => {
+        isChanging = false;
+    });
+
+    document.querySelector('.player__controls__timeline__slider').addEventListener('change', () => {
+        isChanging = true;
+        document.querySelector('.player__controls__timeline__slider').setAttribute('value', document.querySelector('.player__controls__timeline__slider').value);
+        mainAudio.currentTime = document.querySelector('.player__controls__timeline__slider').value;
+    });
+
+    document.querySelector('.player__volume__slider').addEventListener('input', () => {
+        mainAudio.volume = +document.querySelector('.player__volume__slider').value;
+    });
+
+
+
+
+
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>

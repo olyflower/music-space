@@ -2,36 +2,56 @@
 {% load static %}
 
 {% block content %}
-<div class="flex-container">
-  <div>
-    <table>
-      <thead>
-        <tr>
-          <th>Playlists</th>
-        </tr>
-      </thead>
-      <tbody>
-      {% for playlist in object_list %}
-        <tr>
-          <td><a href="{{ playlist.get_absolute_url }}">{{ playlist.title }}</a></td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mb-3">Playlists</h2>
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th>Playlist</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for playlist in object_list %}
+          <tr>
+            <td><a href="{{ playlist.get_absolute_url }}">{{ playlist.title }}</a></td>
+            <td>
+              <form action="{% url 'music:playlist_edit' playlist.pk %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link">Edit</button>
+              </form>
+              <form action="{% url 'music:playlist_delete' playlist.pk %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link">Delete</button>
+              </form>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="2">
+              <p class="text-muted">No playlists yet.</p>
+            </td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td colspan="2">
+              <h3>Create new playlist</h3>
+              <form action="{% url 'music:playlist_create' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="title">Title:</label>
+                  <input type="text" id="title" name="title" required class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-
 </div>
-<style>
-    body {
-        background-image: url('{% static 'music-play.jpg' %}');
-        background-size: cover;
-        background-position: center;
-    }
 
-    .flex-container {
-        border: 2px solid black;
-        padding: 20px;
-        border-radius: 10px;
-    }
-</style>
 {% endblock %}

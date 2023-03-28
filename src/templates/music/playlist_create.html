@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div>
+    <form method="POST" style="width: 25em; align-content: center; margin: auto;" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <br>
+        <button type="submit" class="btn btn-primary" value="Create">Create</button>
+    </form>
+</div>
+{% endblock %}
