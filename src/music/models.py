@@ -77,6 +77,9 @@ class Album(BaseModel):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse("music:album_detail", kwargs={"pk": self.pk})
+
     @classmethod
     def generate_instances(cls, count):
         faker = Faker()
@@ -93,6 +96,9 @@ class Artist(BaseModel):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("music:artist_detail", kwargs={"pk": self.pk})
 
     @classmethod
     def generate_instances(cls, count):

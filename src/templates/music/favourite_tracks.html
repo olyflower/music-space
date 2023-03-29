@@ -50,9 +50,15 @@ h1 {
         <tbody>
         {% for track in object_list %}
         <tr>
-            <td>{{ track.track.title }}</td>
-            <td>{{ track.track.artist }}</td>
-            <td>{{ track.track.album }}</td>
+             <td style="color: white !important;">
+                <a href="{{ track.track.get_absolute_url }}" style="color: inherit !important;">{{ track.track.title }}</a>
+            </td>
+            <td style="color: white !important;">
+                <a href="{{ track.track.artist.get_absolute_url }}" style="color: inherit !important; text-decoration: none;">{{ track.track.artist }}</a>
+            </td>
+            <td style="color: white !important;">
+                <a href="{{ track.track.album.get_absolute_url }}" style="color: inherit !important; text-decoration: none;">{{ track.track.album }}</a>
+            </td>
             <td>
                 <div class="play-button btn" data-track="{{ forloop.counter }}"><i class="bi bi-play-circle-fill"></i>
                 </div>

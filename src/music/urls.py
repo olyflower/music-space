@@ -1,11 +1,12 @@
 from django.urls import path
 
-from music.views import (AddToFavoritesView, CreatePlaylistView,
-                         DeleteFavoriteTrackView, DeletePlaylistView,
-                         GenreDetailView, GetFavoriteTrackView, GetGenresView,
-                         GetPlaylistView, GetTracksView, PlaylistDetailView,
-                         TrackDetailView, UpdatePlaylistView, albums, artists,
-                         genres, test, track_count, tracks)
+from music.views import (AddToFavoritesView, AlbumDetailView, ArtistDetailView,
+                         CreatePlaylistView, DeleteFavoriteTrackView,
+                         DeletePlaylistView, GenreDetailView,
+                         GetFavoriteTrackView, GetGenresView, GetPlaylistView,
+                         GetTracksView, PlaylistDetailView, TrackDetailView,
+                         UpdatePlaylistView, albums, artists, genres, test,
+                         track_count, tracks)
 
 app_name = "music"
 
@@ -15,6 +16,8 @@ urlpatterns = [
     path("playlist_list/", GetPlaylistView.as_view(), name="get_playlist"),
     path("genre/<int:pk>/", GenreDetailView.as_view(), name="genre_detail"),
     path("track/<int:pk>/", TrackDetailView.as_view(), name="track_detail"),
+    path("artist/<int:pk>/", ArtistDetailView.as_view(), name="artist_detail"),
+    path("album/<int:pk>/", AlbumDetailView.as_view(), name="album_detail"),
     path("playlist/<int:pk>/", PlaylistDetailView.as_view(), name="playlist_detail"),
     path("favorite-tracks/", GetFavoriteTrackView.as_view(), name="favourite_tracks"),
     path("add-to-favorite/<int:pk>/", AddToFavoritesView.as_view(), name="add_to_favorite"),

@@ -8,7 +8,7 @@ from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
 from music.forms import PlaylistForm
-from music.models import FavoriteTrack, Genre, Playlist, Track
+from music.models import Album, Artist, FavoriteTrack, Genre, Playlist, Track
 from music.tasks import (generate_albums, generate_artists, generate_genres,
                          generate_tracks, test_task)
 
@@ -104,6 +104,20 @@ class GetFavoriteTrackView(LoginRequiredMixin, ListView):
     redirect_field_name = "index"
     template_name = "music/favourite_tracks.html"
     model = FavoriteTrack
+
+
+class ArtistDetailView(LoginRequiredMixin, DetailView):
+    login_url = "core:login"
+    redirect_field_name = "index"
+    template_name = "music/artist_detail.html"
+    model = Artist
+
+
+class AlbumDetailView(LoginRequiredMixin, DetailView):
+    login_url = "core:login"
+    redirect_field_name = "index"
+    template_name = "music/album_detail.html"
+    model = Album
 
 
 class AddToFavoritesView(View):
