@@ -199,8 +199,9 @@
         .overlay-text {
         font-size: 45px;
         }
-
-
+        body {
+        font-family: Arial, sans-serif;
+        }
     </style>
 
     <link href="cover.css" rel="stylesheet">
@@ -221,8 +222,6 @@
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="{% url 'core:index' %}" class="nav-link px-2 text-white">Home</a></li>
-                        <li><a href="{% url 'music:top_tracks' %}" class="nav-link px-2 text-white">Top 10</a>
-                        </li>
                         <li><a href="{% url 'music:get_tracks' %}" class="nav-link px-2 text-white">Tracks</a></li>
                         <li><a href="{% url 'music:get_genres' %}" class="nav-link px-2 text-white">Music genres</a>
                         </li>
@@ -286,7 +285,7 @@
                 <div class="col-md-4">
                     <div class="text-overlay">
                         <img src="{% static 'index.jpg' %}" width="430" height="300" alt="Music">
-                        <div class="overlay-text">LIVE</div>
+                        <div class="overlay-text">LIFE</div>
                     </div>
                 </div>
             </div>

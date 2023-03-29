@@ -42,8 +42,12 @@
             <td style="color: white !important;">
                 <a href="{{ track.get_absolute_url }}" style="color: inherit !important;">{{ track.title }}</a>
             </td>
-            <th>{{ track.artist }}</th>
-            <th>{{ track.album }}</th>
+            <td style="color: white !important;">
+                <a href="{{ track.artist.get_absolute_url }}" style="color: inherit !important; text-decoration: none;">{{ track.artist }}</a>
+            </td>
+            <td style="color: white !important;">
+                <a href="{{ track.album.get_absolute_url }}" style="color: inherit !important; text-decoration: none;">{{ track.album }}</a>
+            </td>
             <td>
                 <div class="play-button btn" data-track="{{ forloop.counter }}"><i class="bi bi-play-circle-fill"></i>
                 </div>
