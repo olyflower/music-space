@@ -2,36 +2,87 @@
 {% load static %}
 
 {% block content %}
-<div class="flex-container">
-  <div>
-    <table>
-      <thead>
-        <tr>
-          <th>Playlists</th>
-        </tr>
-      </thead>
-      <tbody>
-      {% for playlist in object_list %}
-        <tr>
-          <td><a href="{{ playlist.get_absolute_url }}">{{ playlist.title }}</a></td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mb-3">Your Playlists</h1>
+      <table class="table table-dark table-striped track-list">
+        <thead>
+          <tr>
+            <th scope="col" class="large-font">Playlist</th>
+            <th scope="col" class="large-font">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for playlist in object_list %}
+          <tr>
+            <td><a href="{{ playlist.get_absolute_url }}" style="color: white !important;">{{ playlist.title }}</a></td>
+            <td>
+              <form action="{% url 'music:playlist_edit' playlist.pk %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary btn-light">
+                        <i class="bi bi-pencil-fill"></i>
+                </button>
+              </form>
+              <form action="{% url 'music:playlist_delete' playlist.pk %}" method="post" class="d-inline">
+                {% csrf_token %}
+                 <button type="submit" class="btn btn-outline-danger">
+                        <i class="bi bi-trash"></i>
+                 </button>
+              </form>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="2">
+              <p class="text-muted">No playlists yet.</p>
+            </td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td colspan="2">
+              <h3>Create new playlist</h3>
+              <form action="{% url 'music:playlist_create' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="title">Title:</label>
+               <input type="text" id="title" name="title" required class="form-control">
+                </div>
+                    <br>
+                <button type="submit" class="btn btn-light">Create</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-
 </div>
+<div style="height: 180px;"></div>
 <style>
-    body {
-        background-image: url('{% static 'music-play.jpg' %}');
-        background-size: cover;
-        background-position: center;
-    }
+  body {
+  font-family: Arial, sans-serif;
+}
 
-    .flex-container {
-        border: 2px solid black;
-        padding: 20px;
-        border-radius: 10px;
-    }
+h1, h2, h3, h4, h5, h6 {
+  font-family: Arial, sans-serif;
+}
+
+p, a, li, span {
+  font-family: Arial, sans-serif;
+}
+.btn-outline-danger {
+  color: white;
+  border-color: #fff;
+}
+form button.btn.btn-primary {
+    margin-right: 15px;
+}
+.form-control {
+  background-color: #5523563d;
+  }
+th.large-font {
+    font-size: 25px;
+  }
 </style>
 {% endblock %}

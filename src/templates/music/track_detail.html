@@ -3,14 +3,14 @@
 
 {% block content %}
 <div class="container">
-  <img src="{% static 'music-letters.jpg' %}" alt="Music" style="float: right; max-width: 45%;">
-  <ul>
-      <li>Title: {{ track.title }}</li>
-      <li>Artist: {{ track.artist }}</li>
-      <li>Album: {{ track.album }}</li>
-      <li>Create date: {{ track.create_date }}</li>
-      <li>Length: {{ track.length }}</li>
-      <li>Track file: {{ track.track_file }}</li>
+    <img src="{% static 'track_detail.jpg' %}" alt="Music" style="float: right; max-width: 45%;">
+    <ul>
+        <li>Title: {{ track.title }}</li>
+        <li>Artist: {{ track.artist }}</li>
+        <li>Album: {{ track.album }}</li>
+        <li>Create date: {{ track.create_date }}</li>
+        <li>Length: {{ track.length }}</li>
+        <li>Track file: {{ track.track_file }}</li>
     </ul>
 </div>
 <style>
@@ -26,5 +26,6 @@
   max-width: 55%;
   margin-right: 30px;
 }
+
 </style>
 {% endblock %}

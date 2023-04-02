@@ -1,0 +1,96 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+.large-font {
+  font-size: 22px;
+  font-family: Arial, sans-serif;
+}
+.bi-play-circle-fill {
+  font-size: 28px;
+  color: white;
+}
+.btn-outline-danger {
+  color: white;
+  border-color: #fff;
+}
+h1 {
+  font-family: 'Arial Black', sans-serif;
+}
+.table-container {
+  height: 500px;
+}
+
+.table tbody {
+  height: 400px;
+  display: block;
+  overflow-y: auto;
+}
+
+.table thead,
+.table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+</style>
+<h2 style="font-family: 'Arial Black', sans-serif;">Favorite Tracks</h2>
+<div class="table-container">
+    <table class="table table-dark table-striped track-list">
+        <thead>
+        <tr>
+            <th scope="col" class="large-font">Track</th>
+            <th scope="col" class="large-font">Artist</th>
+            <th scope="col" class="large-font">Album</th>
+            <th scope="col" class="large-font">Play</th>
+            <th scope="col" class="large-font">Remove from favorites</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for track in object_list %}
+        <tr>
+             <td style="color: white !important;">
+                <a href="{{ track.track.get_absolute_url }}" style="color: inherit !important;">{{ track.track.title }}</a>
+            </td>
+            <td style="color: white !important;">
+                <a href="{{ track.track.artist.get_absolute_url }}" style="color: inherit !important; text-decoration: none;">{{ track.track.artist }}</a>
+            </td>
+            <td style="color: white !important;">
+                <a href="{{ track.track.album.get_absolute_url }}" style="color: inherit !important; text-decoration: none;">{{ track.track.album }}</a>
+            </td>
+            <td>
+                <div class="play-button btn" data-track="{{ forloop.counter }}"><i class="bi bi-play-circle-fill"></i>
+                </div>
+            </td>
+            <td>
+                <form action="{% url 'music:delete_favourite_track' track.pk %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">
+                <p>You haven't added any tracks to your favorites yet.</p>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    queue = [];
+
+    {% for track in object_list %}
+        queue.push("{{track.track.track_file.url}}");
+    {% endfor %}
+
+    document.querySelectorAll('.play-button').forEach(element => element.addEventListener('click', () => {
+        playTrack(element.getAttribute('data-track') - 1);
+    }));
+</script>
+{% endblock %}

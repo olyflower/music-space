@@ -4,7 +4,7 @@
 {% block content %}
 <div class="container">
     <h1>{{ genre.name }}</h1>
-    <img src="{% static 'music-genres.jpg' %}" alt="Music genre" style="float: right; max-width: 43%;">
+    <img src="{% static 'genre.jpg' %}" alt="Music genre" style="float: right; max-width: 43%;">
     <p>{{ genre.description }}</p>
 </div>
 <style>
@@ -26,5 +26,6 @@
 .container p {
   flex: 1;
 }
+
 </style>
 {% endblock %}

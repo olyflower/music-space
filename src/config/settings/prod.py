@@ -10,10 +10,10 @@ ALLOWED_HOSTS = ["localhost"]
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
-STATIC_ROOT = BASE_DIR / "static1/"
+STATIC_ROOT = BASE_DIR / "static_cl/"
 STATIC_URL = "/static/"
 
-MEDIA_ROOT = BASE_DIR / "media/"
+MEDIA_ROOT = BASE_DIR / "media_cl/"
 MEDIA_URL = "/media/"
 
 DATABASES = {

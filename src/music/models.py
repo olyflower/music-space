@@ -1,6 +1,9 @@
+import os
 import random
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.core.files import File
 from django.db import models
 from django.urls import reverse
 from faker import Faker
@@ -10,11 +13,12 @@ from core.models import BaseModel
 
 class Track(BaseModel):
     title = models.CharField(max_length=200)
-    length = models.IntegerField(null=True, blank=True)
+    length = models.PositiveIntegerField(null=True, blank=True)
     artist = models.ForeignKey(to="music.Artist", related_name="artist", on_delete=models.CASCADE)
     create_date = models.DateField(null=True, blank=True)
     track_file = models.FileField(upload_to="tracks/", blank=True)
     album = models.ForeignKey(to="music.Album", related_name="tracks", on_delete=models.CASCADE)
+    play_count = models.PositiveIntegerField(default=0)
 
     class Meta:
         ordering = ["title"]
@@ -32,14 +36,18 @@ class Track(BaseModel):
     @classmethod
     def generate_instances(cls, count):
         faker = Faker()
+        filepath = os.path.join(settings.MEDIA_ROOT, "tracks/OneRepublic-West-Coast.mp3")
         for _ in range(count):
-            cls.objects.create(
+            track = cls.objects.create(
                 title=faker.sentence(),
-                length=random.randint(50, 500),
+                length=random.randint(100, 600),
                 create_date=faker.date(),
                 artist=random.choice(Artist.objects.all()),
                 album=random.choice(Album.objects.all()),
+                play_count=random.randint(1, 100),
             )
+            with open(filepath, "rb") as f:
+                track.track_file.save("OneRepublic-West-Coast.mp3", File(f))
 
 
 class Playlist(BaseModel):
@@ -61,13 +69,16 @@ class Album(BaseModel):
     title = models.CharField(max_length=200)
     description = models.TextField(default="description", null=True)
     genre = models.ForeignKey(to="music.Genre", null=True, related_name="genres", on_delete=models.CASCADE)
-    image = models.ImageField(default="default.png", upload_to="media/covers")
+    image = models.ImageField(default="default.png", upload_to="covers/")
 
     class Meta:
         ordering = ["title"]
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("music:album_detail", kwargs={"pk": self.pk})
 
     @classmethod
     def generate_instances(cls, count):
@@ -85,6 +96,9 @@ class Artist(BaseModel):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("music:artist_detail", kwargs={"pk": self.pk})
 
     @classmethod
     def generate_instances(cls, count):
@@ -107,3 +121,8 @@ class Genre(BaseModel):
 
     def get_absolute_url(self):
         return reverse("music:genre_detail", kwargs={"pk": self.pk})
+
+
+class FavoriteTrack(BaseModel):
+    user = models.ForeignKey(to=get_user_model(), on_delete=models.CASCADE)
+    track = models.ForeignKey(to="music.Track", on_delete=models.CASCADE)

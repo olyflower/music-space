@@ -3,54 +3,49 @@
 
 {% block content %}
 <div class="profile">
-  <div class="profile-header">
-    <h1>{{ user.first_name }}</h1>
-    <img src="{% static 'profile_photo.svg' %}" alt="Profile picture">
-    <a href="{% url 'core:edit_user_profile' pk=user.pk %}" class="edit-profile-button">Edit Profile</a>
-  </div>
-  <div class="profile-body">
-    <h2>About Me</h2>
-    <p>{{ user.profile.bio }}</p>
-    <h2>Details</h2>
-    <ul>
-      <li><strong>Gender:</strong> {{ user.profile.gender }}</li>
-      <li><strong>User Type:</strong> {{ user.profile.user_type }}</li>
-      <li><strong>Favourite Genres:</strong> {{ user.profile.favourite_genres }}</li>
-      <li><strong>Website:</strong> <a href="#">{{ user.profile.website }}</a></li>
-      <li><strong>Postcode:</strong> {{ user.profile.postcode }}</li>
-    </ul>
-  </div>
+    <div class="profile-header">
+        <h1>{{ user.first_name }}</h1>
+    </div>
+    <div class="profile-body">
+        <h2>About Me</h2>
+        <p>{{ user.profile.bio }}</p>
+        <h2>Details</h2>
+        <ul>
+            <li><strong>Gender:</strong> {{ user.profile.gender }}</li>
+            <li><strong>User Type:</strong> {{ user.profile.user_type }}</li>
+            <li><strong>Favourite Genres:</strong> {{ user.profile.favourite_genres }}</li>
+            <li><strong>Website:</strong> <a href="#">{{ user.profile.website }}</a></li>
+            <li><strong>Postcode:</strong> {{ user.profile.postcode }}</li>
+        </ul>
+    </div>
+    <a href="{% url 'core:edit_user_profile' pk=user.pk %}" class="btn edit-profile-button">Edit Profile</a>
 </div>
-
+<div style="height: 200px;"></div>
 <style>
 .profile {
-  border: 1px solid #ddd;
-  padding: 10px;
+  padding: 20px;
+  background-color: #3f1d4ab5;
+  font-family: Arial, sans-serif;
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 10px;
 }
-
 .profile-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-right: 460px;
+  margin-bottom: 20px;
 }
 
 .profile-header img {
   max-width: 150px;
 }
-.profile {
-  border: 1px solid #ddd;
-  padding: 10px;
-  background-image: url("{% static 'music-play.jpg' %}");
-  background-size: 100%;
-  background-position: center;
-  border-radius: 10px;
-  margin-bottom: 120px;
-}
 .profile-body h2 {
   margin-top: 50px;
 }
-
+.profile-body h2:first-of-type {
+  margin-top: -20px;
+}
 .profile-body ul {
   list-style: none;
   padding: 0;
@@ -61,6 +56,21 @@
   margin-top: 30px;
   line-height: 1.0em;
 }
+.profile-body a {
+  color: white;
+}
+.edit-profile-button {
+  color: white;
+  font-size: 24px;
+  padding: 10px 20px;
+  border: 2px solid white;
+  border-radius: 5px;
+  display: block;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #3d1b39b0;
+  text-align: center;
+}
 </style>
-
 {% endblock %}
