@@ -3,9 +3,12 @@
 
 {% block content %}
 <div class="container">
-    <h1>{{ genre.name }}</h1>
-    <img src="{% static 'genre.jpg' %}" alt="Music genre" style="float: right; max-width: 43%;">
-    <p>{{ genre.description }}</p>
+    <img src="{% static 'album_detail.jpg' %}" alt="Music" style="float: right; max-width: 45%;">
+    <ul>
+        <li>Title: {{ album.title }}</li>
+        <li>Description: {{ album.description }}</li>
+        <li>Genre: {{ album.genre }}</li>
+    </ul>
 </div>
 <style>
 .container {
@@ -13,18 +16,12 @@
   flex-direction: row;
   align-items: center;
   border: 1px solid #ddd;
-  border-radius: 10px;
   padding: 30px;
-  height: 88%;
 }
 
 .container img {
   max-width: 55%;
-  margin-right: 10px;
-}
-
-.container p {
-  flex: 1;
+  margin-right: 30px;
 }
 
 </style>

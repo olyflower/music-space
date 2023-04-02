@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 
+from celery.schedules import crontab
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -22,6 +24,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_extensions",
+    "django_celery_beat",
     "crispy_forms",
     "rest_framework",
     "drf_yasg",
@@ -141,3 +144,7 @@ CELERY_RESULT_BACKEND = "redis://redis"
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TASK_SERIALIZER = "json"
+
+CELERY_TIMEZONE = "Europe/Kyiv"
+
+CELERY_BEAT_SCHEDULE = {"some_periodic_task": {"task": "music.tasks.test_task", "schedule": crontab(minute="*/25")}}

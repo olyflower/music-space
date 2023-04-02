@@ -1,6 +1,9 @@
 <style>
-  h1 {
-    font-size: 24px;
+  th {
+    font-size: 30px;
+  }
+    table td a {
+    color: white;
   }
   table {
     font-size: 20px;
@@ -9,19 +12,10 @@
   }
   th, td {
     line-height: 12px;
-    border: 1px solid #ddd;
+    border: 1.5px solid #ddd;
     padding: 10px;
-    text-align: left;
-  }
-  th {
-    font-weight: bold;
-  }
-  a {
-    color: blue;
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: underline;
+    text-align: center;
+    color: white;
   }
   .flex-container {
     display: flex;
@@ -38,39 +32,37 @@
     flex: 1;
     padding: 30px;
   }
-  .flex-container > div:first-child {
-    margin-right: 50px;
-  }
   img {
     max-width: 100%;
     display: block;
     margin: 0 auto;
   }
 </style>
+
 {% extends 'index.html' %}
 {% load static %}
 
 {% block content %}
-
 <div class="flex-container">
-  <div>
-    <table>
-      <thead>
-        <tr>
-          <th>Genre name</th>
-        </tr>
-      </thead>
-      <tbody>
-      {% for genre in object_list %}
-        <tr>
-          <td><a href="{{ genre.get_absolute_url }}">{{ genre.name }}</a></td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table>
-  </div>
-  <div>
-    <img src="{% static 'music-genres.jpg' %}" alt="Music genre">
-  </div>
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>Genre name</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for genre in object_list %}
+            <tr>
+                <td><a href="{{ genre.get_absolute_url }}">{{ genre.name }}</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <img src="{% static 'genre.jpg' %}" alt="Music genre">
+    </div>
 </div>
+
 {% endblock %}
