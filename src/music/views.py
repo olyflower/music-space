@@ -7,10 +7,10 @@ from django.views import View
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
-from music.forms import PlaylistForm
+from music.forms import PlaylistForm, TrackUploadForm
 from music.models import Album, Artist, FavoriteTrack, Genre, Playlist, Track
 from music.tasks import (generate_albums, generate_artists, generate_genres,
-                         generate_tracks, test_task)
+                         generate_tracks)
 
 
 class GetTracksView(LoginRequiredMixin, ListView):
@@ -20,15 +20,19 @@ class GetTracksView(LoginRequiredMixin, ListView):
     model = Track
 
     def get_queryset(self):
-        search = self.request.GET.get("search_text")
-        search_fields = ["title", "artist__name", "album__title"]
-        if search:
-            or_filter = Q()
-            for field in search_fields:
-                or_filter |= Q(**({f"{field}__icontains": search}))
-            return Track.objects.filter(or_filter)
+        sort_by = self.request.GET.get("sort")
+        if sort_by == "artist":
+            return Track.objects.order_by("artist__name")
+        else:
+            search = self.request.GET.get("search_text")
+            search_fields = ["title", "artist__name", "album__title"]
+            if search:
+                or_filter = Q()
+                for field in search_fields:
+                    or_filter |= Q(**({f"{field}__icontains": search}))
+                return Track.objects.filter(or_filter)
 
-        return Track.objects.all()
+            return Track.objects.all()
 
 
 class TrackDetailView(LoginRequiredMixin, DetailView):
@@ -36,6 +40,22 @@ class TrackDetailView(LoginRequiredMixin, DetailView):
     redirect_field_name = "index"
     template_name = "music/track_detail.html"
     model = Track
+
+
+class TrackUploadView(View):
+    template_name = "music/track_upload.html"
+    success_url = reverse_lazy("music:get_tracks")
+
+    def get(self, request, *args, **kwargs):
+        form = TrackUploadForm()
+        return render(request, self.template_name, {"form": form})
+
+    def post(self, request, *args, **kwargs):
+        form = TrackUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(self.success_url)
+        return render(request, self.template_name, {"form": form})
 
 
 class GetGenresView(LoginRequiredMixin, ListView):
@@ -50,6 +70,11 @@ class GenreDetailView(LoginRequiredMixin, DetailView):
     redirect_field_name = "index"
     template_name = "music/genre_detail.html"
     model = Genre
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["list_tracks"] = Track.objects.filter(album__genre=self.object).order_by("?")[:5]
+        return context
 
 
 class GetPlaylistView(LoginRequiredMixin, ListView):
@@ -105,6 +130,13 @@ class GetFavoriteTrackView(LoginRequiredMixin, ListView):
     template_name = "music/favourite_tracks.html"
     model = FavoriteTrack
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        sort = self.request.GET.get("sort")
+        if sort == "artist":
+            queryset = queryset.order_by("track__artist__name")
+        return queryset
+
 
 class ArtistDetailView(LoginRequiredMixin, DetailView):
     login_url = "core:login"
@@ -139,11 +171,6 @@ class DeleteFavoriteTrackView(LoginRequiredMixin, DeleteView):
         return FavoriteTrack.objects.filter(user=self.request.user)
 
 
-def track_count(request):
-    tracks = Track.objects.order_by("-play_count")
-    return render(request, "music/top_tracks.html", {"tracks": tracks})
-
-
 def genres(request):
     generate_genres.delay()
     return HttpResponse("Task started")
@@ -161,9 +188,4 @@ def albums(request, count):
 
 def tracks(request, count):
     generate_tracks.delay(count)
-    return HttpResponse("Task started")
-
-
-def test(request):
-    test_task.delay()
     return HttpResponse("Task started")

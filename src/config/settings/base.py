@@ -6,10 +6,9 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+import os
 from datetime import timedelta
 from pathlib import Path
-
-from celery.schedules import crontab
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -106,11 +105,13 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_USE_TLS = True
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "lms.learning.2023@gmail.com"
-EMAIL_HOST_PASSWORD = "xgmrtuamnnvfkwlj"
-EMAIL_PORT = 587
-EMAIL_FAIL_SILENTLY = False
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
+EMAIL_FAIL_SILENTLY = os.getenv("EMAIL_FAIL_SILENTLY")
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -146,5 +147,3 @@ CELERY_RESULT_SERIALIZER = "json"
 CELERY_TASK_SERIALIZER = "json"
 
 CELERY_TIMEZONE = "Europe/Kyiv"
-
-CELERY_BEAT_SCHEDULE = {"some_periodic_task": {"task": "music.tasks.test_task", "schedule": crontab(minute="*/25")}}
