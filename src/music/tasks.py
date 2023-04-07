@@ -10,11 +10,6 @@ from music.models import Album, Artist, Genre, Track
 
 
 @shared_task
-def test_task():
-    print("Print this test task")
-
-
-@shared_task
 def generate_artists(count):
     faker = Faker()
     for _ in range(count):
@@ -33,7 +28,7 @@ def generate_albums(count):
 @shared_task
 def generate_tracks(count):
     faker = Faker()
-    filepath = os.path.join(settings.MEDIA_ROOT, "tracks/OneRepublic-West-Coast.mp3")
+    filepath = os.path.join(settings.MEDIA_ROOT, "tracks/Imagine-Dragons-Monster.mp3")
     for _ in range(count):
         track = Track.objects.create(
             title=faker.sentence(),
