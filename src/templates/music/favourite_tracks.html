@@ -15,6 +15,9 @@
   color: white;
   border-color: #fff;
 }
+a {
+    color: white;
+}
 h1 {
   font-family: 'Arial Black', sans-serif;
 }
@@ -41,7 +44,9 @@ h1 {
         <thead>
         <tr>
             <th scope="col" class="large-font">Track</th>
-            <th scope="col" class="large-font">Artist</th>
+            <th scope="col" class="large-font">
+              <a href="?sort=artist">Artist</a>
+            </th>
             <th scope="col" class="large-font">Album</th>
             <th scope="col" class="large-font">Play</th>
             <th scope="col" class="large-font">Remove from favorites</th>
@@ -82,11 +87,12 @@ h1 {
         </tbody>
     </table>
 </div>
+<div style="height: 60px;"></div>
 <script>
     queue = [];
 
     {% for track in object_list %}
-        queue.push("{{track.track.track_file.url}}");
+        queue.push(["{{track.track.track_file.url}}", "{{track.track.title|escapejs}}", "{{track.track.artist|escapejs}}"]);
     {% endfor %}
 
     document.querySelectorAll('.play-button').forEach(element => element.addEventListener('click', () => {

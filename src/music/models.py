@@ -36,7 +36,7 @@ class Track(BaseModel):
     @classmethod
     def generate_instances(cls, count):
         faker = Faker()
-        filepath = os.path.join(settings.MEDIA_ROOT, "tracks/OneRepublic-West-Coast.mp3")
+        filepath = os.path.join(settings.MEDIA_ROOT, "tracks/Imagine-Dragons-Monster.mp3")
         for _ in range(count):
             track = cls.objects.create(
                 title=faker.sentence(),

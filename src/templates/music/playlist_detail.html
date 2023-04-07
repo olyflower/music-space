@@ -81,7 +81,7 @@ h1 {
     queue = [];
 
     {% for track in playlist.tracks.all %}
-        queue.push("{{track.track_file.url}}");
+        queue.push(["{{track.track_file.url}}", "{{track.title|escapejs}}", "{{track.artist|escapejs}}"]);
     {% endfor %}
 
     document.querySelectorAll('.play-button').forEach(element => element.addEventListener('click', () => {
