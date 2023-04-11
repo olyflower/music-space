@@ -1,0 +1,80 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="profile">
+    <div class="profile-header">
+        <h1>{{ user.first_name }}</h1>
+    </div>
+    <div class="profile-body">
+        <h2>About Me</h2>
+        <p>{{ user.profile.bio }}</p>
+        <h2>Details</h2>
+        <ul>
+            <li><strong>Name and Surname:</strong> {{ user.first_name }} {{ user.last_name }}</li>
+            <li><strong>Phone number:</strong> {{ user.phone_number}}</li>
+            <li><strong>Birth date:</strong> {{ user.birth_date}}</li>
+            <li><strong>Gender:</strong> {{ user.profile.gender }}</li>
+            <li><strong>User Type:</strong> {{ user.profile.user_type }}</li>
+            <li><strong>Favourite Genres:</strong> {{ user.profile.favourite_genres }}</li>
+            <li><strong>Website:</strong> <a href="#">{{ user.profile.website }}</a></li>
+            <li><strong>Postcode:</strong> {{ user.profile.postcode }}</li>
+            <li><strong>City:</strong> {{ user.city}}</li>
+        </ul>
+    </div>
+    <a href="{% url 'core:edit_user_profile' pk=user.pk %}" class="btn edit-profile-button">Edit Profile</a>
+</div>
+<div style="height: 200px;"></div>
+<style>
+.profile {
+  padding: 20px;
+  background-color: #3f1d4ab5;
+  font-family: Arial, sans-serif;
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.profile-header img {
+  max-width: 150px;
+}
+.profile-body h2 {
+  margin-top: 50px;
+}
+.profile-body h2:first-of-type {
+  margin-top: -20px;
+}
+.profile-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-body li {
+  margin-top: 30px;
+  line-height: 1.0em;
+}
+.profile-body a {
+  color: white;
+}
+.edit-profile-button {
+  color: white;
+  font-size: 24px;
+  padding: 10px 20px;
+  border: 2px solid white;
+  border-radius: 5px;
+  display: block;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #3d1b39b0;
+  text-align: center;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,1483 @@
+[
+  {
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+      "name": "Can add log entry",
+      "content_type": 1,
+      "codename": "add_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+      "name": "Can change log entry",
+      "content_type": 1,
+      "codename": "change_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+      "name": "Can delete log entry",
+      "content_type": 1,
+      "codename": "delete_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+      "name": "Can view log entry",
+      "content_type": 1,
+      "codename": "view_logentry"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+      "name": "Can add permission",
+      "content_type": 2,
+      "codename": "add_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+      "name": "Can change permission",
+      "content_type": 2,
+      "codename": "change_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+      "name": "Can delete permission",
+      "content_type": 2,
+      "codename": "delete_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+      "name": "Can view permission",
+      "content_type": 2,
+      "codename": "view_permission"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+      "name": "Can add group",
+      "content_type": 3,
+      "codename": "add_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+      "name": "Can change group",
+      "content_type": 3,
+      "codename": "change_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+      "name": "Can delete group",
+      "content_type": 3,
+      "codename": "delete_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+      "name": "Can view group",
+      "content_type": 3,
+      "codename": "view_group"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+      "name": "Can add content type",
+      "content_type": 4,
+      "codename": "add_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+      "name": "Can change content type",
+      "content_type": 4,
+      "codename": "change_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+      "name": "Can delete content type",
+      "content_type": 4,
+      "codename": "delete_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+      "name": "Can view content type",
+      "content_type": 4,
+      "codename": "view_contenttype"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+      "name": "Can add session",
+      "content_type": 5,
+      "codename": "add_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+      "name": "Can change session",
+      "content_type": 5,
+      "codename": "change_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+      "name": "Can delete session",
+      "content_type": 5,
+      "codename": "delete_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+      "name": "Can view session",
+      "content_type": 5,
+      "codename": "view_session"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+      "name": "Can add crontab",
+      "content_type": 6,
+      "codename": "add_crontabschedule"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+      "name": "Can change crontab",
+      "content_type": 6,
+      "codename": "change_crontabschedule"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+      "name": "Can delete crontab",
+      "content_type": 6,
+      "codename": "delete_crontabschedule"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+      "name": "Can view crontab",
+      "content_type": 6,
+      "codename": "view_crontabschedule"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+      "name": "Can add interval",
+      "content_type": 7,
+      "codename": "add_intervalschedule"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+      "name": "Can change interval",
+      "content_type": 7,
+      "codename": "change_intervalschedule"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+      "name": "Can delete interval",
+      "content_type": 7,
+      "codename": "delete_intervalschedule"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+      "name": "Can view interval",
+      "content_type": 7,
+      "codename": "view_intervalschedule"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+      "name": "Can add periodic task",
+      "content_type": 8,
+      "codename": "add_periodictask"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+      "name": "Can change periodic task",
+      "content_type": 8,
+      "codename": "change_periodictask"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+      "name": "Can delete periodic task",
+      "content_type": 8,
+      "codename": "delete_periodictask"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+      "name": "Can view periodic task",
+      "content_type": 8,
+      "codename": "view_periodictask"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+      "name": "Can add periodic tasks",
+      "content_type": 9,
+      "codename": "add_periodictasks"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+      "name": "Can change periodic tasks",
+      "content_type": 9,
+      "codename": "change_periodictasks"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+      "name": "Can delete periodic tasks",
+      "content_type": 9,
+      "codename": "delete_periodictasks"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+      "name": "Can view periodic tasks",
+      "content_type": 9,
+      "codename": "view_periodictasks"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+      "name": "Can add solar event",
+      "content_type": 10,
+      "codename": "add_solarschedule"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+      "name": "Can change solar event",
+      "content_type": 10,
+      "codename": "change_solarschedule"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+      "name": "Can delete solar event",
+      "content_type": 10,
+      "codename": "delete_solarschedule"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+      "name": "Can view solar event",
+      "content_type": 10,
+      "codename": "view_solarschedule"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+      "name": "Can add clocked",
+      "content_type": 11,
+      "codename": "add_clockedschedule"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+      "name": "Can change clocked",
+      "content_type": 11,
+      "codename": "change_clockedschedule"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+      "name": "Can delete clocked",
+      "content_type": 11,
+      "codename": "delete_clockedschedule"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+      "name": "Can view clocked",
+      "content_type": 11,
+      "codename": "view_clockedschedule"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+      "name": "Can add user",
+      "content_type": 12,
+      "codename": "add_customer"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+      "name": "Can change user",
+      "content_type": 12,
+      "codename": "change_customer"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+      "name": "Can delete user",
+      "content_type": 12,
+      "codename": "delete_customer"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+      "name": "Can view user",
+      "content_type": 12,
+      "codename": "view_customer"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+      "name": "Can add user profile",
+      "content_type": 13,
+      "codename": "add_userprofile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+      "name": "Can change user profile",
+      "content_type": 13,
+      "codename": "change_userprofile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+      "name": "Can delete user profile",
+      "content_type": 13,
+      "codename": "delete_userprofile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+      "name": "Can view user profile",
+      "content_type": 13,
+      "codename": "view_userprofile"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 53,
+    "fields": {
+      "name": "Can add album",
+      "content_type": 14,
+      "codename": "add_album"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 54,
+    "fields": {
+      "name": "Can change album",
+      "content_type": 14,
+      "codename": "change_album"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 55,
+    "fields": {
+      "name": "Can delete album",
+      "content_type": 14,
+      "codename": "delete_album"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 56,
+    "fields": {
+      "name": "Can view album",
+      "content_type": 14,
+      "codename": "view_album"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 57,
+    "fields": {
+      "name": "Can add genre",
+      "content_type": 15,
+      "codename": "add_genre"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 58,
+    "fields": {
+      "name": "Can change genre",
+      "content_type": 15,
+      "codename": "change_genre"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 59,
+    "fields": {
+      "name": "Can delete genre",
+      "content_type": 15,
+      "codename": "delete_genre"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 60,
+    "fields": {
+      "name": "Can view genre",
+      "content_type": 15,
+      "codename": "view_genre"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 61,
+    "fields": {
+      "name": "Can add track",
+      "content_type": 16,
+      "codename": "add_track"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 62,
+    "fields": {
+      "name": "Can change track",
+      "content_type": 16,
+      "codename": "change_track"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 63,
+    "fields": {
+      "name": "Can delete track",
+      "content_type": 16,
+      "codename": "delete_track"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 64,
+    "fields": {
+      "name": "Can view track",
+      "content_type": 16,
+      "codename": "view_track"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 65,
+    "fields": {
+      "name": "Can add playlist",
+      "content_type": 17,
+      "codename": "add_playlist"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 66,
+    "fields": {
+      "name": "Can change playlist",
+      "content_type": 17,
+      "codename": "change_playlist"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 67,
+    "fields": {
+      "name": "Can delete playlist",
+      "content_type": 17,
+      "codename": "delete_playlist"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 68,
+    "fields": {
+      "name": "Can view playlist",
+      "content_type": 17,
+      "codename": "view_playlist"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 69,
+    "fields": {
+      "name": "Can add artist",
+      "content_type": 18,
+      "codename": "add_artist"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 70,
+    "fields": {
+      "name": "Can change artist",
+      "content_type": 18,
+      "codename": "change_artist"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 71,
+    "fields": {
+      "name": "Can delete artist",
+      "content_type": 18,
+      "codename": "delete_artist"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 72,
+    "fields": {
+      "name": "Can view artist",
+      "content_type": 18,
+      "codename": "view_artist"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 73,
+    "fields": {
+      "name": "Can add favorite track",
+      "content_type": 19,
+      "codename": "add_favoritetrack"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 74,
+    "fields": {
+      "name": "Can change favorite track",
+      "content_type": 19,
+      "codename": "change_favoritetrack"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 75,
+    "fields": {
+      "name": "Can delete favorite track",
+      "content_type": 19,
+      "codename": "delete_favoritetrack"
+    }
+  },
+  {
+    "model": "auth.permission",
+    "pk": 76,
+    "fields": {
+      "name": "Can view favorite track",
+      "content_type": 19,
+      "codename": "view_favoritetrack"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+      "app_label": "admin",
+      "model": "logentry"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+      "app_label": "auth",
+      "model": "permission"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+      "app_label": "auth",
+      "model": "group"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+      "app_label": "contenttypes",
+      "model": "contenttype"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+      "app_label": "sessions",
+      "model": "session"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+      "app_label": "django_celery_beat",
+      "model": "crontabschedule"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+      "app_label": "django_celery_beat",
+      "model": "intervalschedule"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+      "app_label": "django_celery_beat",
+      "model": "periodictask"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+      "app_label": "django_celery_beat",
+      "model": "periodictasks"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+      "app_label": "django_celery_beat",
+      "model": "solarschedule"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+      "app_label": "django_celery_beat",
+      "model": "clockedschedule"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+      "app_label": "account",
+      "model": "customer"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": {
+      "app_label": "account",
+      "model": "userprofile"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 14,
+    "fields": {
+      "app_label": "music",
+      "model": "album"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 15,
+    "fields": {
+      "app_label": "music",
+      "model": "genre"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 16,
+    "fields": {
+      "app_label": "music",
+      "model": "track"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 17,
+    "fields": {
+      "app_label": "music",
+      "model": "playlist"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 18,
+    "fields": {
+      "app_label": "music",
+      "model": "artist"
+    }
+  },
+  {
+    "model": "contenttypes.contenttype",
+    "pk": 19,
+    "fields": {
+      "app_label": "music",
+      "model": "favoritetrack"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "m1o8ua8xphmix6d3kyjy4pputagkcxdu",
+    "fields": {
+      "session_data": ".eJxVjEEOwiAQRe_C2hCgFBiX7j0DGWZAqoYmpV0Z765NutDtf-_9l4i4rTVuPS9xYnEWWpx-t4T0yG0HfMd2myXNbV2mJHdFHrTL68z5eTncv4OKvX7rwfuijAfUXHQi5XMIPpQxDRpGAwldsS4zKAJLnpRicGy4FGsNaKPE-wPYUjeE:1plVZe:0tLPT_xTdi_1_ZJgn_tf7DPDqVnwdsZ4xiIeL6gl6OE",
+      "expire_date": "2023-04-23T13:59:18.674Z"
+    }
+  },
+  {
+    "model": "account.customer",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$390000$oeLJUYkI8udfw5pRSo4r2a$DAc+3EpRZ9cDRDOrqNriJQ6LsMZqbNP6oidLux0h/u0=",
+      "last_login": "2023-04-09T13:59:18.671Z",
+      "is_superuser": true,
+      "first_name": "",
+      "last_name": "",
+      "email": "admin19@admin.com",
+      "phone_number": null,
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2023-04-09T13:59:12.912Z",
+      "birth_date": null,
+      "avatar": "",
+      "city": "",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "account.userprofile",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "gender": "",
+      "user_type": "",
+      "bio": null,
+      "favourite_genres": "",
+      "website": null,
+      "postcode": null
+    }
+  },
+  {
+    "model": "music.track",
+    "pk": 1,
+    "fields": {
+      "create_datetime": "2023-04-09T15:15:12.022Z",
+      "last_update": "2023-04-09T15:15:12.022Z",
+      "title": "Natural",
+      "length": 185,
+      "artist": 1,
+      "create_date": null,
+      "track_file": "tracks/Imagine_Dragons_Natural_rbZ2AqG.mp3",
+      "album": 1,
+      "play_count": 0
+    }
+  },
+  {
+    "model": "music.track",
+    "pk": 2,
+    "fields": {
+      "create_datetime": "2023-04-09T15:18:32.028Z",
+      "last_update": "2023-04-09T15:18:32.028Z",
+      "title": "Shallow",
+      "length": 202,
+      "artist": 2,
+      "create_date": null,
+      "track_file": "tracks/Lady_Gaga_Shallow_Gfi0HlJ.mp3",
+      "album": 6,
+      "play_count": 0
+    }
+  },
+  {
+    "model": "music.track",
+    "pk": 3,
+    "fields": {
+      "create_datetime": "2023-04-09T15:20:03.873Z",
+      "last_update": "2023-04-09T15:20:03.873Z",
+      "title": "Million reasons",
+      "length": 195,
+      "artist": 2,
+      "create_date": null,
+      "track_file": "tracks/Lady_Gaga_Million_Reasons_EEXlc0w.mp3",
+      "album": 7,
+      "play_count": 0
+    }
+  },
+  {
+    "model": "music.track",
+    "pk": 4,
+    "fields": {
+      "create_datetime": "2023-04-09T15:21:27.248Z",
+      "last_update": "2023-04-09T15:21:27.248Z",
+      "title": "West Coast",
+      "length": 187,
+      "artist": 4,
+      "create_date": null,
+      "track_file": "tracks/OneRepublic-West-Coast_nCX9gQ3.mp3",
+      "album": 8,
+      "play_count": 0
+    }
+  },
+  {
+    "model": "music.track",
+    "pk": 5,
+    "fields": {
+      "create_datetime": "2023-04-09T15:22:18.262Z",
+      "last_update": "2023-04-09T15:22:18.262Z",
+      "title": "Shake it Off",
+      "length": 203,
+      "artist": 6,
+      "create_date": null,
+      "track_file": "tracks/Taylor_Swift_-_Shake-It-Off_LhMZA7p.mp3",
+      "album": 3,
+      "play_count": 0
+    }
+  },
+  {
+    "model": "music.track",
+    "pk": 6,
+    "fields": {
+      "create_datetime": "2023-04-09T15:24:05.863Z",
+      "last_update": "2023-04-09T15:24:05.863Z",
+      "title": "Call out my name",
+      "length": 208,
+      "artist": 3,
+      "create_date": null,
+      "track_file": "tracks/The_Weeknd_Call_qDhN3Im.mp3",
+      "album": 2,
+      "play_count": 0
+    }
+  },
+  {
+    "model": "music.track",
+    "pk": 7,
+    "fields": {
+      "create_datetime": "2023-04-09T15:28:18.156Z",
+      "last_update": "2023-04-09T15:28:18.156Z",
+      "title": "Perfect",
+      "length": 254,
+      "artist": 7,
+      "create_date": null,
+      "track_file": "tracks/Ed_Sheeran_Perfect_ct1cKgW.mp3",
+      "album": 4,
+      "play_count": 0
+    }
+  },
+  {
+    "model": "music.track",
+    "pk": 8,
+    "fields": {
+      "create_datetime": "2023-04-09T15:28:59.343Z",
+      "last_update": "2023-04-09T15:28:59.343Z",
+      "title": "Photograph",
+      "length": 251,
+      "artist": 7,
+      "create_date": null,
+      "track_file": "tracks/Ed_sheeran_photograph_IT7WIQx.mp3",
+      "album": 5,
+      "play_count": 0
+    }
+  },
+  {
+    "model": "music.track",
+    "pk": 9,
+    "fields": {
+      "create_datetime": "2023-04-09T15:32:49.667Z",
+      "last_update": "2023-04-09T15:32:49.667Z",
+      "title": "Strangers in the Night",
+      "length": 141,
+      "artist": 5,
+      "create_date": null,
+      "track_file": "tracks/Frank_Sinatra_Strangers_NV6lO8t.mp3",
+      "album": 9,
+      "play_count": 0
+    }
+  },
+  {
+    "model": "music.track",
+    "pk": 10,
+    "fields": {
+      "create_datetime": "2023-04-09T15:35:25.429Z",
+      "last_update": "2023-04-09T15:35:25.429Z",
+      "title": "Tiptoe",
+      "length": 188,
+      "artist": 1,
+      "create_date": null,
+      "track_file": "tracks/Imagine_Dragons_-_Tiptoe_Kqm1jxQ.mp3",
+      "album": 10,
+      "play_count": 0
+    }
+  },
+  {
+    "model": "music.track",
+    "pk": 11,
+    "fields": {
+      "create_datetime": "2023-04-09T15:40:06.822Z",
+      "last_update": "2023-04-09T15:40:06.822Z",
+      "title": "It's time",
+      "length": 240,
+      "artist": 1,
+      "create_date": null,
+      "track_file": "tracks/Imagine-Dragons_-_Is_Time_GlRqJQf.mp3",
+      "album": 11,
+      "play_count": 0
+    }
+  },
+  {
+    "model": "music.track",
+    "pk": 12,
+    "fields": {
+      "create_datetime": "2023-04-09T15:42:23.473Z",
+      "last_update": "2023-04-09T15:42:23.473Z",
+      "title": "Monster",
+      "length": 241,
+      "artist": 1,
+      "create_date": null,
+      "track_file": "tracks/Imagine-Dragons-Monster_zBDsXFV.mp3",
+      "album": 12,
+      "play_count": 0
+    }
+  },
+  {
+    "model": "music.track",
+    "pk": 13,
+    "fields": {
+      "create_datetime": "2023-04-09T15:45:06.040Z",
+      "last_update": "2023-04-09T15:45:06.040Z",
+      "title": "Wrecked",
+      "length": 243,
+      "artist": 1,
+      "create_date": null,
+      "track_file": "tracks/Imagine-Dragons-Wrecked_95hP9KA.mp3",
+      "album": 13,
+      "play_count": 0
+    }
+  },
+  {
+    "model": "music.track",
+    "pk": 14,
+    "fields": {
+      "create_datetime": "2023-04-09T15:50:37.663Z",
+      "last_update": "2023-04-09T15:50:37.663Z",
+      "title": "Smoke & Mirrors",
+      "length": 250,
+      "artist": 1,
+      "create_date": null,
+      "track_file": "tracks/ImagineDragons_SmokeAndMirrors.mp3",
+      "album": 12,
+      "play_count": 0
+    }
+  },
+  {
+    "model": "music.track",
+    "pk": 15,
+    "fields": {
+      "create_datetime": "2023-04-09T15:54:19.935Z",
+      "last_update": "2023-04-09T15:54:19.935Z",
+      "title": "Blinding Lights",
+      "length": 260,
+      "artist": 3,
+      "create_date": null,
+      "track_file": "tracks/The_Weeknd_BlindingLights.mp3",
+      "album": 14,
+      "play_count": 0
+    }
+  },
+  {
+    "model": "music.album",
+    "pk": 1,
+    "fields": {
+      "create_datetime": "2023-04-09T15:06:26.971Z",
+      "last_update": "2023-04-09T15:06:26.971Z",
+      "title": "Origins",
+      "description": "Origins is the fourth studio album by the American pop rock band Imagine Dragons, released on November 9, 2018 by Kidinakorner, Polydor Records and Interscope Records.\r\n\r\nThe album was produced by the band members themselves, frequent collaborator Alex da Kid, Mattman & Robin, John Hill, Joel Little, Tim Randolph, and Jayson DeZuzio, who produced a majority of the band's previous effort, Evolve (2017), as well as Jorgen Odegard. Frontman Dan Reynolds described Origins as a \"sister album\" to Evolve, and that it would complete a cycle of their music.\r\n\r\nOrigins received generally mixed reviews from critics, but many claimed that the album is an improvement from Evolve. The album was preceded by four singles: \"Natural\", \"Zero\", \"Machine\" and \"Bad Liar\". An additional single, \"Birds\", was released in 2019.",
+      "genre": 1,
+      "image": "default.png"
+    }
+  },
+  {
+    "model": "music.album",
+    "pk": 2,
+    "fields": {
+      "create_datetime": "2023-04-09T15:07:43.082Z",
+      "last_update": "2023-04-09T15:07:43.082Z",
+      "title": "My Dear Melancholy",
+      "description": "My Dear Melancholy (stylized as My Dear Melancholy,) is the first extended play by Canadian singer and songwriter The Weeknd. It was released on March 30, 2018, through XO and distributed by Republic Records. Primarily produced by Frank Dukes, who serves as an executive producer alongside The Weeknd, it features contributions from Gesaffelstein, as well as Mike Will Made It, DaHeala, Skrillex and Daft Punk's Guy-Manuel de Homem-Christo, among others.\r\n\r\nMy Dear Melancholy has been described as a return to the darker style of The Weeknd's earlier work, such as Trilogy (2012) and Kiss Land (2013). The EP was supported by the lead single, \"Call Out My Name\". It received generally favourable reviews and debuted at number one on the US Billboard 200.",
+      "genre": 9,
+      "image": "default.png"
+    }
+  },
+  {
+    "model": "music.album",
+    "pk": 3,
+    "fields": {
+      "create_datetime": "2023-04-09T15:08:44.477Z",
+      "last_update": "2023-04-09T15:08:44.477Z",
+      "title": "1989",
+      "description": "1989 is the fifth studio album by American singer-songwriter Taylor Swift. It was released on October 27, 2014, by Big Machine Records. After music critics questioned her status as a country musician following her pop and electronic-influenced fourth studio album Red (2012), Swift was inspired by 1980s synth-pop to recalibrate her artistry from country to pop music. On 1989, titled after her birth year to signify her symbolic artistic rebirth, Swift enlisted Max Martin as co-executive producer.",
+      "genre": 2,
+      "image": "default.png"
+    }
+  },
+  {
+    "model": "music.album",
+    "pk": 4,
+    "fields": {
+      "create_datetime": "2023-04-09T15:09:40.641Z",
+      "last_update": "2023-04-09T15:09:40.641Z",
+      "title": "÷ (\"Divide\")",
+      "description": "÷ (\"Divide\") is the third studio album by English singer-songwriter Ed Sheeran. It was released on 3 March 2017 through Asylum Records and Atlantic Records. \"Castle on the Hill\" and \"Shape of You\" were released as the album's lead singles on 6 January 2017. The album won the Grammy Award for Best Pop Vocal Album at the 60th Annual Grammy Awards. As of February 2023, the deluxe version of the album is the most-streamed album of all time on Spotify.",
+      "genre": 2,
+      "image": "default.png"
+    }
+  },
+  {
+    "model": "music.album",
+    "pk": 5,
+    "fields": {
+      "create_datetime": "2023-04-09T15:10:39.839Z",
+      "last_update": "2023-04-09T15:10:39.839Z",
+      "title": "× (\"Multiply\")",
+      "description": "× (\"Multiply\") is the second studio album by English singer-songwriter, Ed Sheeran. It was released on 20 June 2014 in Australia and New Zealand, and worldwide on 23 June through Asylum Records and Atlantic Records. The album received positive reviews from music critics. It was an international commercial success, peaking at No. 1 in 15 countries, while topping both the UK Albums Chart and the US Billboard 200. x also reached the top five in seven other countries and was the best selling album of 2014 in Australia, New Zealand, Ireland, and the United Kingdom. Five singles were released from the album: \"Sing\", \"Don't\", \"Thinking Out Loud\", \"Bloodstream\" (a collaboration with Rudimental), and \"Photograph\".",
+      "genre": 3,
+      "image": "default.png"
+    }
+  },
+  {
+    "model": "music.album",
+    "pk": 6,
+    "fields": {
+      "create_datetime": "2023-04-09T15:11:52.642Z",
+      "last_update": "2023-04-09T15:11:52.643Z",
+      "title": "A Star Is Born",
+      "description": "A Star Is Born is the soundtrack album to the 2018 musical film of the same name, performed by its stars Lady Gaga and Bradley Cooper. It was released on October 5, 2018, by Interscope Records. Cooper teamed up with Gaga's recurring collaborator DJ White Shadow, and an assortment of country musicians, including Lukas Nelson, who also stars in the film as a member of Cooper's band. The soundtrack also includes contributions from Jason Isbell, Mark Ronson, Diane Warren, and Andrew Wyatt of Miike Snow.",
+      "genre": 2,
+      "image": "default.png"
+    }
+  },
+  {
+    "model": "music.album",
+    "pk": 7,
+    "fields": {
+      "create_datetime": "2023-04-09T15:12:49.747Z",
+      "last_update": "2023-04-09T15:12:49.747Z",
+      "title": "Joanne",
+      "description": "Joanne is the fifth studio album by American singer Lady Gaga. It was released on October 21, 2016, by Streamline and Interscope Records. Gaga, Mark Ronson and BloodPop handled its production aside variety other collaborators, such as Kevin Parker, Emile Haynie, Jeff Bhasker and Josh Homme. Musically, Joanne is a stripped-down, dance-pop, soft rock and Americana record with country elements, aimed to focus on Gaga's vocals. Lyrically, the album delves into the theme of family and life's emotions; the death of her aunt, Joanne Stefani Germanotta, deeply influenced the record. The singer's experience acting on the television series American Horror Story also influenced its creative process.",
+      "genre": 2,
+      "image": "default.png"
+    }
+  },
+  {
+    "model": "music.album",
+    "pk": 8,
+    "fields": {
+      "create_datetime": "2023-04-09T15:13:59.966Z",
+      "last_update": "2023-04-09T15:13:59.966Z",
+      "title": "Oh My My",
+      "description": "Oh My My is the fourth studio album by American pop rock band OneRepublic. It was released on October 7, 2016, through Mosley Music Group and Interscope Records, three years after the release of the band's third studio album, Native (2013). Due to Native's success with the tracks \"Counting Stars\" and \"Love Runs Out\", Oh My My incorporates some elements of their electronic production. Ryan Tedder, the band's lead singer, songwriter and producer, focused on lyrics about optimism, love, and overcoming past traumas.",
+      "genre": 2,
+      "image": "default.png"
+    }
+  },
+  {
+    "model": "music.album",
+    "pk": 9,
+    "fields": {
+      "create_datetime": "2023-04-09T15:32:22.737Z",
+      "last_update": "2023-04-09T15:32:22.737Z",
+      "title": "Strangers in the Night",
+      "description": "Strangers in the Night is a 1966 studio album by Frank Sinatra. It marked Sinatra's return to number one on the pop album charts in the mid-1960s, and consolidated the comeback he initiated in 1965. Combining pop hits with show tunes and standards, the album bridges classic jazz-oriented big band with contemporary pop. It became Sinatra's fifth and final album to reach number one on the US Pop Albums Chart. Additionally, the single \"Strangers in the Night\" reached number one on the pop single charts, while \"Summer Wind\" has become one of Sinatra best-known songs, making numerous film and television appearances in the years since its release.",
+      "genre": 4,
+      "image": "default.png"
+    }
+  },
+  {
+    "model": "music.album",
+    "pk": 10,
+    "fields": {
+      "create_datetime": "2023-04-09T15:34:38.583Z",
+      "last_update": "2023-04-09T15:34:38.583Z",
+      "title": "Night Visions",
+      "description": "Night Visions is the debut studio album by American pop rock band Imagine Dragons. It was released on September 4, 2012, through Kidinakorner and Interscope Records. The album was primarily produced by the band themselves, as well as English hip-hop producer Alex da Kid and Brandon Darner from the American indie rock group The Envy Corps. According to frontman Dan Reynolds, the album took three years to finish, with six of the album's tracks being previously released on multiple EPs. Musically, Night Visions exhibits influences of folk, hip hop and pop.",
+      "genre": 1,
+      "image": "default.png"
+    }
+  },
+  {
+    "model": "music.album",
+    "pk": 11,
+    "fields": {
+      "create_datetime": "2023-04-09T15:39:31.554Z",
+      "last_update": "2023-04-09T15:39:31.554Z",
+      "title": "Continued Silence EP",
+      "description": "Continued Silence EP is the fifth EP by American rock band Imagine Dragons, released on February 14, 2012 by KIDinaKORNER and Interscope Records. It was recorded at Westlake Recording Studios. All songs were written by Imagine Dragons and produced by Alex Da Kid, with mixing by engineer Manny Marroquin and engineer Rich Costey. The EP was mastered by mastering engineer Joe LaPorta. All of the songs on Continued Silence were featured on the band's debut album Night Visions except for \"My Fault\" and \"Round and Round\", which were later included on deluxe editions of Night Visions. Previous purchases of songs from the EP counted towards Night Visions and decreased its price.",
+      "genre": 2,
+      "image": "default.png"
+    }
+  },
+  {
+    "model": "music.album",
+    "pk": 12,
+    "fields": {
+      "create_datetime": "2023-04-09T15:41:55.262Z",
+      "last_update": "2023-04-09T15:41:55.262Z",
+      "title": "Smoke + Mirrors",
+      "description": "Smoke + Mirrors is the second studio album by American pop rock band Imagine Dragons. The album was recorded during 2014 at the band's home studio in Las Vegas, Nevada. Self-produced by members of the band along with English hip-hop producer Alexander Grant, known by his moniker Alex da Kid, the album was released by Interscope Records and Grant's Kidinakorner label on February 17, 2015, in the United States.",
+      "genre": 1,
+      "image": "default.png"
+    }
+  },
+  {
+    "model": "music.album",
+    "pk": 13,
+    "fields": {
+      "create_datetime": "2023-04-09T15:44:27.421Z",
+      "last_update": "2023-04-09T15:44:27.421Z",
+      "title": "Mercury – Act 1",
+      "description": "Mercury – Act 1 is the fifth studio album by American pop rock band Imagine Dragons, released on September 3, 2021, by Kidinakorner and Interscope Records in the United States. Imagine Dragons recorded the album in 2018 after the previous album Origins. The album was executive produced by Rick Rubin. The album's successor was released on July 1, 2022, titled Mercury – Acts 1 & 2, which Act 1 also appears on.",
+      "genre": 1,
+      "image": "default.png"
+    }
+  },
+  {
+    "model": "music.album",
+    "pk": 14,
+    "fields": {
+      "create_datetime": "2023-04-09T15:53:39.230Z",
+      "last_update": "2023-04-09T15:53:39.230Z",
+      "title": "After Hours",
+      "description": "After Hours is the fourth studio album by Canadian singer the Weeknd, released on March 20, 2020, by XO and Republic Records. Primarily produced by the Weeknd, it features a variety of producers, including DaHeala, Illangelo, Max Martin, Metro Boomin, and OPN, most of whom the Weeknd had worked with previously. The standard edition of the album has no features, but the remixes edition contains guest appearances from Chromatics and Lil Uzi Vert. Thematically, After Hours explores loneliness, self-loathing, and escapism.",
+      "genre": 9,
+      "image": "default.png"
+    }
+  },
+  {
+    "model": "music.artist",
+    "pk": 1,
+    "fields": {
+      "create_datetime": "2023-04-09T14:07:27.893Z",
+      "last_update": "2023-04-09T14:07:27.893Z",
+      "name": "Imagine Dragons",
+      "biography": "Imagine Dragons are an American pop rock band based in Las Vegas, Nevada, consisting of lead singer Dan Reynolds, guitarist Wayne Sermon, bassist Ben McKee and drummer Daniel Platzman. The band first gained exposure with the release of their single \"It's Time\", followed by their award-winning debut studio album Night Visions (2012), which resulted in the chart-topping singles \"Radioactive\" and \"Demons\". Rolling Stone named \"Radioactive\", which held the record for most weeks charted on the Billboard Hot 100, the \"biggest rock hit of the year\". MTV called them \"the year's biggest breakout band\", and Billboard named them their \"Breakthrough Band of 2013\" and \"Biggest Band of 2017\", and placed them at the top of their \"Year in Rock\" rankings for 2013, 2017, and 2018. Imagine Dragons topped the Billboard Year-End \"Top Artists – Duo/Group\" category in 2018."
+    }
+  },
+  {
+    "model": "music.artist",
+    "pk": 2,
+    "fields": {
+      "create_datetime": "2023-04-09T14:08:40.453Z",
+      "last_update": "2023-04-09T14:08:40.454Z",
+      "name": "Lady Gaga",
+      "biography": "Lady Gaga, byname of Stefani Joanne Angelina Germanotta, (born March 28, 1986, New York City, New York, U.S.), American singer-songwriter and performance artist, known for her flamboyant costumes, provocative lyrics, and strong vocal talents, who achieved enormous popular success with songs such as “Just Dance,” “Bad Romance,” and “Born This Way.”"
+    }
+  },
+  {
+    "model": "music.artist",
+    "pk": 3,
+    "fields": {
+      "create_datetime": "2023-04-09T14:09:13.494Z",
+      "last_update": "2023-04-09T14:09:13.494Z",
+      "name": "The weeknd",
+      "biography": "The Weeknd, byname of Abel Makkonen Tesfaye, (born February 16, 1990, Toronto, Ontario, Canada), Canadian rhythm-and-blues singer and songwriter who was perhaps best known for his explicit songs about sex and drugs, many of which were autobiographical, and for his soaring falsetto and its singular tremolo."
+    }
+  },
+  {
+    "model": "music.artist",
+    "pk": 4,
+    "fields": {
+      "create_datetime": "2023-04-09T14:09:56.883Z",
+      "last_update": "2023-04-09T14:09:56.883Z",
+      "name": "OneRepublic",
+      "biography": "OneRepublic is an American pop rock band formed in Colorado Springs, Colorado, in 2002. The lineup currently consists of Ryan Tedder (lead vocals, piano), Zach Filkins (lead guitar, viola), Drew Brown (rhythm guitar), Brent Kutzle (bass, cello), Eddie Fisher (drums), and Brian Willett (keyboards, violin)."
+    }
+  },
+  {
+    "model": "music.artist",
+    "pk": 5,
+    "fields": {
+      "create_datetime": "2023-04-09T14:10:31.266Z",
+      "last_update": "2023-04-09T14:10:31.266Z",
+      "name": "Frank Sinatra",
+      "biography": "Frank Sinatra, in full Francis Albert Sinatra, (born December 12, 1915, Hoboken, New Jersey, U.S.—died May 14, 1998, Los Angeles, California), American singer and motion-picture actor who, through a long career and a very public personal life, became one of the most sought-after performers in the entertainment industry; he is often hailed as the greatest American singer of 20th-century popular music."
+    }
+  },
+  {
+    "model": "music.artist",
+    "pk": 6,
+    "fields": {
+      "create_datetime": "2023-04-09T14:11:04.578Z",
+      "last_update": "2023-04-09T14:11:04.578Z",
+      "name": "Taylor Swift",
+      "biography": "Taylor Swift, in full Taylor Alison Swift, (born December 13, 1989, West Reading, Pennsylvania, U.S.), American pop and country music singer-songwriter whose tales of young heartache achieved widespread success in the early 21st century."
+    }
+  },
+  {
+    "model": "music.artist",
+    "pk": 7,
+    "fields": {
+      "create_datetime": "2023-04-09T14:11:44.470Z",
+      "last_update": "2023-04-09T14:11:44.470Z",
+      "name": "Ed Sheeran",
+      "biography": "Ed Sheeran is a singer/songwriter who began playing guitar at a young age and soon after started writing his own songs. When he was just a teenager, he moved to London to pursue his music, and his outpouring of creativity added up to several early EPs and hundreds of live shows. Drawing attention for his online performances, Sheeran hit No. 1 on the iTunes chart before he ever signed with a record label. Since signing with Atlantic, Sheeran has sold millions of records and won Grammys for hits like \"Thinking Out Loud\" and \"Shape of You,\" as well as his 2018 album, ÷."
+    }
+  },
+  {
+    "model": "music.genre",
+    "pk": 1,
+    "fields": {
+      "create_datetime": "2023-04-09T14:04:03.401Z",
+      "last_update": "2023-04-09T14:04:03.401Z",
+      "name": "Rock",
+      "description": "Rock music is a broad genre of popular music that originated as Rock and Roll in the United States in the late 1940s and early 1950s, developing into a range of different styles in the mid-1960s and later, particularly in the United States and the United Kingdom."
+    }
+  },
+  {
+    "model": "music.genre",
+    "pk": 2,
+    "fields": {
+      "create_datetime": "2023-04-09T14:04:03.404Z",
+      "last_update": "2023-04-09T14:04:03.404Z",
+      "name": "Pop",
+      "description": "Pop is a genre of popular music that originated in its modern form during the mid-1950s in the United States and the United Kingdom. The terms popular music and pop music are often used interchangeably, although the former describes all music that is popular and includes many disparate styles."
+    }
+  },
+  {
+    "model": "music.genre",
+    "pk": 3,
+    "fields": {
+      "create_datetime": "2023-04-09T14:04:03.406Z",
+      "last_update": "2023-04-09T14:04:03.406Z",
+      "name": "Hip Hop",
+      "description": "Hip-hop and Rap music are mainly described as stylized rhythmic music with the fast rhyming singing style called rap. The two genres are closely related and originated from the Afro-American and Latin-American ghettos in the U.S.A. in the mid-’70s. The music has its own culture with breakdance, MCing, DJing, and graffiti. "
+    }
+  },
+  {
+    "model": "music.genre",
+    "pk": 4,
+    "fields": {
+      "create_datetime": "2023-04-09T14:04:03.407Z",
+      "last_update": "2023-04-09T14:04:03.407Z",
+      "name": "Jazz",
+      "description": "Jazz is a music genre that originated in the African-American communities of New Orleans, Louisiana, United States, in the late 19th and early 20th centuries, with its roots in blues and ragtime."
+    }
+  },
+  {
+    "model": "music.genre",
+    "pk": 5,
+    "fields": {
+      "create_datetime": "2023-04-09T14:04:03.410Z",
+      "last_update": "2023-04-09T14:04:03.410Z",
+      "name": "Blues",
+      "description": "A genre and musical form developed by African Americans in the United States around the end of the 19th century from African-American work songs and European-American folk music. The blues form, ubiquitous in jazz and rock and roll, is characterized by the call-and-response pattern, the blues scale and specific chord progressions, of which the twelve-bar blues is the most common. Blues shuffles or walking bass reinforce the trance-like rhythm and form a repetitive groove effect."
+    }
+  },
+  {
+    "model": "music.genre",
+    "pk": 6,
+    "fields": {
+      "create_datetime": "2023-04-09T14:04:03.412Z",
+      "last_update": "2023-04-09T14:04:03.412Z",
+      "name": "Country",
+      "description": "Also known as country and western, country music has its roots in the south of the USA. Having evolved from a combination of different fold styles. Combining the influence of working-class immigrants it takes its cues from Irish and Celtic folk, traditional English ballads and cowboy songs. In the modern era, there are numerous sub-genres like country pop, country rock and neo-country."
+    }
+  },
+  {
+    "model": "music.genre",
+    "pk": 7,
+    "fields": {
+      "create_datetime": "2023-04-09T14:04:03.413Z",
+      "last_update": "2023-04-09T14:04:03.413Z",
+      "name": "Folk",
+      "description": "A genre that evolved from traditional music during the 20th century folk revival. One meaning often given is that of old songs with no known composers; another is music that has been transmitted and evolved by a process of oral transmission or performed by custom over a long period of time."
+    }
+  },
+  {
+    "model": "music.genre",
+    "pk": 8,
+    "fields": {
+      "create_datetime": "2023-04-09T14:04:03.415Z",
+      "last_update": "2023-04-09T14:04:03.415Z",
+      "name": "Reggae",
+      "description": "Reggae music originated from Jamaica during the late 1960s. Reggae is characterized by its distinctive vocals and lyrics, which talk about the Jamaican people’s lifestyles, struggles, and social aspects. The songs are generally activist songs trying to raise awareness on world peace, anti-racism, anti-capitalism, anti-colonialism as well as the Rastafari movement."
+    }
+  },
+  {
+    "model": "music.genre",
+    "pk": 9,
+    "fields": {
+      "create_datetime": "2023-04-09T14:04:03.417Z",
+      "last_update": "2023-04-09T14:04:03.417Z",
+      "name": "R&B",
+      "description": "A genre of popular African-American music that originated in the 1940s as urbane, rocking, jazz based music with a heavy, insistent beat. Lyrics focus heavily on the themes of triumphs and failures in terms of relationships, freedom, economics, aspirations, and sex."
+    }
+  },
+  {
+    "model": "music.genre",
+    "pk": 10,
+    "fields": {
+      "create_datetime": "2023-04-09T14:04:03.419Z",
+      "last_update": "2023-04-09T14:04:03.419Z",
+      "name": "Soul",
+      "description": "A popular music genre that combines elements of African-American gospel music, rhythm and blues and jazz."
+    }
+  },
+  {
+    "model": "music.genre",
+    "pk": 11,
+    "fields": {
+      "create_datetime": "2023-04-09T14:04:03.421Z",
+      "last_update": "2023-04-09T14:04:03.421Z",
+      "name": "Funk",
+      "description": "Funk is a music genre that originated in African American communities in the mid-1960s when musicians created a rhythmic, danceable new form of music through a mixture of soul, jazz, and rhythm and blues (R&B)."
+    }
+  },
+  {
+    "model": "music.favoritetrack",
+    "pk": 1,
+    "fields": {
+      "create_datetime": "2023-04-09T15:54:34.718Z",
+      "last_update": "2023-04-09T15:54:34.718Z",
+      "user": 1,
+      "track": 15
+    }
+  },
+  {
+    "model": "music.favoritetrack",
+    "pk": 2,
+    "fields": {
+      "create_datetime": "2023-04-09T15:54:44.340Z",
+      "last_update": "2023-04-09T15:54:44.340Z",
+      "user": 1,
+      "track": 6
+    }
+  },
+  {
+    "model": "music.favoritetrack",
+    "pk": 3,
+    "fields": {
+      "create_datetime": "2023-04-09T15:54:51.953Z",
+      "last_update": "2023-04-09T15:54:51.953Z",
+      "user": 1,
+      "track": 7
+    }
+  }
+]

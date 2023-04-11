@@ -1,0 +1,135 @@
+version: "3"
+
+services:
+  backend:
+    build: ./
+    container_name: music_container
+    working_dir: /music
+    command:
+      - ./commands/start_server_${MODE}.sh
+    ports:
+      - ${LOCAL_PORT}:${WSGI_PORT}
+    volumes:
+      - ./src:/music/src
+      - static_content:/music/src/static_cl
+      - media_content:/music/src/media_cl
+    env_file:
+      - .env
+#    depends_on:
+#      - postgres
+
+#  postgres:
+#    image: postgres:12
+#    ports:
+#      - 5432:5432
+#    volumes:
+#      - pg_data:/var/lib/postgresql/data
+#    env_file:
+#      - .env
+
+#  pgadmin:
+#    container_name: pgadmin_container
+#    image: dpage/pgadmin4
+#    restart: on-failure
+#    env_file:
+#      - .env
+#    ports:
+#      - 5000:80
+#    volumes:
+#      - pgadmin_data:/var/lib/pgadmin
+#    depends_on:
+#      - postgres
+
+#  mongodb:
+#    image: mongo:3-stretch
+#    container_name: mongo_db_container
+#    ports:
+#      - 27017:27017
+#    command: ["--bind_ip_all", "--smallfiles"]
+#    volumes:
+#      - mongo_data:/data/db
+#    env_file:
+#      - .env
+#    restart: on-failure
+
+#  mongoadmin:
+#    image: mongo-express
+#    restart: always
+#    container_name: mongo_admin_container
+#    ports:
+#      - 8091:8081
+#    env_file:
+#      - .env
+#    links:
+#      - mongodb
+#    depends_on:
+#      - mongodb
+
+  nginx:
+    image: nginx:1.19
+    volumes:
+      - static_content:/music/src/static
+      - media_content:/music/src/media
+      - ./nginx:/etc/nginx/conf.d
+    ports:
+      - 80:80
+      - 443:443
+    env_file:
+      - .env
+    depends_on:
+      - backend
+
+#  redis:
+#    image: redis
+#    env_file:
+#      - .env
+#    restart: on-failure
+#    depends_on:
+#      - backend
+
+#  celery-flower:
+#    build: ./
+#    command:
+#      - ./commands/start_celery.sh
+#    restart: always
+#    volumes:
+#      - ./src:/music
+#      - ./commands:/music/commands
+#    env_file:
+#      - .env
+#    ports:
+#      - 5556:5555
+#    depends_on:
+#      - redis
+#      - backend
+
+#  celerybeat:
+#    build: ./
+#    command:
+#      - ./commands/start_celerybeat.sh
+#    restart: always
+#    volumes:
+#      - ./src:/music
+#      - ./commands:/music/commands
+#    env_file:
+#      - .env
+#    depends_on:
+#      - redis
+#      - backend
+
+#  redisadmin:
+#    image: rediscommander/redis-commander:latest
+#    container_name: redisadmin
+#    hostname: redisadmin
+#    restart: always
+#    ports:
+#      - 8092:8081
+#    env_file:
+#      - .env
+
+volumes:
+  static_content: { }
+  media_content: { }
+#  mongo_data: { }
+#  pg_data: { }
+#  pgadmin_data: { }

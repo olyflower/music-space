@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ genre.name }}</h1>
+    <p>{{ genre.description }}</p>
+    <h2>Some tracks of this genre of music:</h2>
+    <ul>
+        {% for track in list_tracks %}
+            <li><a href="{{ track.get_absolute_url }}">{{ track.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+<div style="height: 180px;"></div>
+<style>
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 30px;
+  height: 88%;
+}
+
+.container img {
+  max-width: 55%;
+  margin-right: 10px;
+}
+
+.container p {
+  flex: 1;
+}
+.container ul li a {
+  color: white;
+}
+</style>
+{% endblock %}

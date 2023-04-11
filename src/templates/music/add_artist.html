@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="upload">
+    <h2>Add Artist</h2>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+<div style="height: 200px;"></div>
+  <style>
+    .upload {
+      padding: 20px;
+      background-color: #3f1d4ab5;
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 0 auto;
+      border-radius: 10px;
+    }
+    .upload h2 {
+      margin-bottom: 20px;
+      color: white;
+    }
+    .upload form {
+      display: flex;
+      flex-direction: column;
+    }
+    .upload label {
+      color: white;
+      margin-bottom: 10px;
+    }
+    .upload input[type="file"] {
+      margin-bottom: 20px;
+    }
+    .upload button[type="submit"] {
+      background-color: #3d1b39b0;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
+{% endblock %}

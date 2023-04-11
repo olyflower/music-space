@@ -1,0 +1,91 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+.large-font {
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+}
+.bi-play-circle-fill {
+  font-size: 28px;
+  color: white;
+}
+.btn-outline-danger {
+  color: white;
+  border-color: #fff;
+}
+h1 {
+  font-family: 'Arial Black', sans-serif;
+}
+.table-container {
+  height: 400px;
+  overflow-y: scroll;
+}
+.table-container thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color:
+}
+</style>
+<h2 style="font-family: 'Arial Black', sans-serif;">{{ playlist.title }}</h2>
+<div class="table-container">
+    <table class="table table-dark table-striped track-list">
+        <thead>
+        <tr>
+            <th scope="col" class="large-font">Track</th>
+            <th scope="col" class="large-font">Artist</th>
+            <th scope="col" class="large-font">Album</th>
+            <th scope="col" class="large-font">Play</th>
+            <th scope="col" class="large-font">Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for track in playlist.tracks.all %}
+        <tr>
+             <td style="color: white !important;">
+                <a href="{{ track.get_absolute_url }}" style="color: inherit !important;">{{ track.title }}</a>
+            </td>
+            <td style="color: white !important;">
+                <a href="{{ track.artist.get_absolute_url }}" style="color: inherit !important; text-decoration: none;">{{ track.artist }}</a>
+            </td>
+            <td style="color: white !important;">
+                <a href="{{ track.album.get_absolute_url }}" style="color: inherit !important; text-decoration: none;">{{ track.album }}</a>
+            </td>
+            <td>
+                <div class="play-button btn" data-track="{{ forloop.counter }}"><i class="bi bi-play-circle-fill"></i>
+                </div>
+            </td>
+            <td>
+                <form action="{% url 'music:playlist_detail' playlist.pk %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="remove_track" value="{{ track.pk }}">
+                    <button type="submit" class="btn btn-outline-danger">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">
+                <p>This playlist is empty.</p>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    queue = [];
+
+    {% for track in playlist.tracks.all %}
+        queue.push(["{{track.track_file.url}}", "{{track.title|escapejs}}", "{{track.artist|escapejs}}"]);
+    {% endfor %}
+
+    document.querySelectorAll('.play-button').forEach(element => element.addEventListener('click', () => {
+        playTrack(element.getAttribute('data-track') - 1);
+    }));
+</script>
+{% endblock %}

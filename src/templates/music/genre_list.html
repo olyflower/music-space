@@ -1,0 +1,68 @@
+<style>
+  th {
+    font-size: 30px;
+  }
+    table td a {
+    color: white;
+  }
+  table {
+    font-size: 20px;
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
+  th, td {
+    line-height: 12px;
+    border: 1.5px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    color: white;
+  }
+  .flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5px 30px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    height: 90%;
+  }
+  .flex-container > div {
+    flex: 1;
+    padding: 30px;
+  }
+  img {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="flex-container">
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>Genre name</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for genre in object_list %}
+            <tr>
+                <td><a href="{{ genre.get_absolute_url }}">{{ genre.name }}</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <img src="{% static 'genre.jpg' %}" alt="Music genre">
+    </div>
+</div>
+
+{% endblock %}
