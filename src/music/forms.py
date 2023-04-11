@@ -12,7 +12,7 @@ class PlaylistForm(forms.ModelForm):
 class TrackUploadForm(forms.ModelForm):
     class Meta:
         model = Track
-        fields = ["title", "length", "track_file", "album", "artist"]
+        fields = ["title", "track_file", "album", "artist"]
 
 
 class AlbumAddForm(forms.ModelForm):

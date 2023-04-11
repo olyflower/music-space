@@ -29,7 +29,7 @@ class GetTracksView(LoginRequiredMixin, ListView):
             if search:
                 or_filter = Q()
                 for field in search_fields:
-                    or_filter |= Q(**({f"{field}__icontains": search}))
+                    or_filter |= Q(**({f"{field}__istartswith": search}))
                 return Track.objects.filter(or_filter)
 
             return Track.objects.all()
