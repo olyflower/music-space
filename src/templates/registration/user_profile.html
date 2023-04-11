@@ -11,11 +11,15 @@
         <p>{{ user.profile.bio }}</p>
         <h2>Details</h2>
         <ul>
+            <li><strong>Name and Surname:</strong> {{ user.first_name }} {{ user.last_name }}</li>
+            <li><strong>Phone number:</strong> {{ user.phone_number}}</li>
+            <li><strong>Birth date:</strong> {{ user.birth_date}}</li>
             <li><strong>Gender:</strong> {{ user.profile.gender }}</li>
             <li><strong>User Type:</strong> {{ user.profile.user_type }}</li>
             <li><strong>Favourite Genres:</strong> {{ user.profile.favourite_genres }}</li>
             <li><strong>Website:</strong> <a href="#">{{ user.profile.website }}</a></li>
             <li><strong>Postcode:</strong> {{ user.profile.postcode }}</li>
+            <li><strong>City:</strong> {{ user.city}}</li>
         </ul>
     </div>
     <a href="{% url 'core:edit_user_profile' pk=user.pk %}" class="btn edit-profile-button">Edit Profile</a>

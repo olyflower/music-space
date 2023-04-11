@@ -1,16 +1,16 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
-from music.forms import PlaylistForm, TrackUploadForm
+from music.forms import (AlbumAddForm, ArtistAddForm, PlaylistForm,
+                         TrackUploadForm)
 from music.models import Album, Artist, FavoriteTrack, Genre, Playlist, Track
-from music.tasks import (generate_albums, generate_artists, generate_genres,
-                         generate_tracks)
+from music.tasks import generate_albums, generate_artists, generate_genres
 
 
 class GetTracksView(LoginRequiredMixin, ListView):
@@ -42,20 +42,47 @@ class TrackDetailView(LoginRequiredMixin, DetailView):
     model = Track
 
 
-class TrackUploadView(View):
+class TrackUploadView(CreateView):
+    model = Track
+    form_class = TrackUploadForm
     template_name = "music/track_upload.html"
     success_url = reverse_lazy("music:get_tracks")
 
-    def get(self, request, *args, **kwargs):
-        form = TrackUploadForm()
-        return render(request, self.template_name, {"form": form})
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        if Track.objects.filter(title=form.cleaned_data["title"]).exists():
+            form.add_error(None, "Track already exists!")
+            return self.form_invalid(form)
+        else:
+            return super().form_valid(form)
 
-    def post(self, request, *args, **kwargs):
-        form = TrackUploadForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect(self.success_url)
-        return render(request, self.template_name, {"form": form})
+
+class AlbumAddView(CreateView):
+    model = Album
+    template_name = "music/add_album.html"
+    success_url = reverse_lazy("music:get_tracks")
+    form_class = AlbumAddForm
+
+    def form_valid(self, form):
+        if Album.objects.filter(title=form.cleaned_data["title"]).exists():
+            form.add_error(None, "This album has already been added!")
+            return self.form_invalid(form)
+        else:
+            return super().form_valid(form)
+
+
+class ArtistAddView(CreateView):
+    model = Artist
+    template_name = "music/add_artist.html"
+    success_url = reverse_lazy("music:get_tracks")
+    form_class = ArtistAddForm
+
+    def form_valid(self, form):
+        if Artist.objects.filter(name=form.cleaned_data["name"]).exists():
+            form.add_error(None, "This artist already exists!")
+            return self.form_invalid(form)
+        else:
+            return super().form_valid(form)
 
 
 class GetGenresView(LoginRequiredMixin, ListView):
@@ -82,6 +109,9 @@ class GetPlaylistView(LoginRequiredMixin, ListView):
     redirect_field_name = "index"
     template_name = "music/playlist_list.html"
     model = Playlist
+
+    def get_queryset(self):
+        return Playlist.objects.filter(user=self.request.user)
 
 
 class CreatePlaylistView(LoginRequiredMixin, CreateView):
@@ -131,7 +161,7 @@ class GetFavoriteTrackView(LoginRequiredMixin, ListView):
     model = FavoriteTrack
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = super().get_queryset().filter(user=self.request.user)
         sort = self.request.GET.get("sort")
         if sort == "artist":
             queryset = queryset.order_by("track__artist__name")
@@ -183,9 +213,4 @@ def artists(request, count):
 
 def albums(request, count):
     generate_albums.delay(count)
-    return HttpResponse("Task started")
-
-
-def tracks(request, count):
-    generate_tracks.delay(count)
     return HttpResponse("Task started")
