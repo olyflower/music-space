@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <img src="{% static 'album_detail.jpg' %}" alt="Music" style="float: right; max-width: 45%;">
+    <ul>
+        <li>Title: {{ album.title }}</li>
+        <li>Description: {{ album.description }}</li>
+        <li>Genre: {{ album.genre }}</li>
+    </ul>
+</div>
+<style>
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 30px;
+}
+
+.container img {
+  max-width: 55%;
+  margin-right: 30px;
+}
+
+</style>
+{% endblock %}
