@@ -9,11 +9,11 @@ from core.models import BaseModel
 
 
 class Track(BaseModel):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, blank=False)
     length = models.PositiveIntegerField(null=True, blank=True)
     artist = models.ForeignKey(to="music.Artist", related_name="artist", on_delete=models.CASCADE)
     create_date = models.DateField(null=True, blank=True)
-    track_file = models.FileField(upload_to="tracks/", blank=True)
+    track_file = models.FileField(upload_to="tracks/", blank=False, null=False)
     album = models.ForeignKey(to="music.Album", related_name="tracks", on_delete=models.CASCADE)
     play_count = models.PositiveIntegerField(default=0)
 
@@ -32,7 +32,7 @@ class Track(BaseModel):
 
 
 class Playlist(BaseModel):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, default="Playlist")
     tracks = models.ManyToManyField(to="music.Track", related_name="playlist_tracks")
     user = models.ForeignKey(to=get_user_model(), on_delete=models.CASCADE)
 
@@ -47,7 +47,7 @@ class Playlist(BaseModel):
 
 
 class Album(BaseModel):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, blank=False, null=False)
     description = models.TextField(default="description", null=True)
     genre = models.ForeignKey(to="music.Genre", null=True, related_name="genres", on_delete=models.CASCADE)
     image = models.ImageField(default="default.png", upload_to="covers/")
@@ -69,7 +69,7 @@ class Album(BaseModel):
 
 
 class Artist(BaseModel):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, blank=False, null=False)
     biography = models.TextField(default="biography", null=True)
 
     class Meta:
@@ -91,7 +91,7 @@ class Artist(BaseModel):
 
 
 class Genre(BaseModel):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, blank=False)
     description = models.TextField(max_length=1200, blank=True)
 
     class Meta:
