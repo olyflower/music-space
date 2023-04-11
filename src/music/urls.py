@@ -1,18 +1,20 @@
 from django.urls import path
 
-from music.views import (AddToFavoritesView, AlbumDetailView, ArtistDetailView,
-                         CreatePlaylistView, DeleteFavoriteTrackView,
-                         DeletePlaylistView, GenreDetailView,
-                         GetFavoriteTrackView, GetGenresView, GetPlaylistView,
-                         GetTracksView, PlaylistDetailView, TrackDetailView,
-                         TrackUploadView, UpdatePlaylistView, albums, artists,
-                         genres, tracks)
+from music.views import (AddToFavoritesView, AlbumAddView, AlbumDetailView,
+                         ArtistAddView, ArtistDetailView, CreatePlaylistView,
+                         DeleteFavoriteTrackView, DeletePlaylistView,
+                         GenreDetailView, GetFavoriteTrackView, GetGenresView,
+                         GetPlaylistView, GetTracksView, PlaylistDetailView,
+                         TrackDetailView, TrackUploadView, UpdatePlaylistView,
+                         albums, artists, genres)
 
 app_name = "music"
 
 urlpatterns = [
     path("track_list/", GetTracksView.as_view(), name="get_tracks"),
     path("track_upload/", TrackUploadView.as_view(), name="track_upload"),
+    path("add_album/", AlbumAddView.as_view(), name="add_album"),
+    path("add_artist/", ArtistAddView.as_view(), name="add_artist"),
     path("genre_list/", GetGenresView.as_view(), name="get_genres"),
     path("playlist_list/", GetPlaylistView.as_view(), name="get_playlist"),
     path("genre/<int:pk>/", GenreDetailView.as_view(), name="genre_detail"),
@@ -26,7 +28,6 @@ urlpatterns = [
     path("generate-artists/<int:count>/", artists, name="generate_artists"),
     path("generate-genres", genres, name="generate_genres"),
     path("generate-albums/<int:count>/", albums, name="generate_albums"),
-    path("generate-tracks/<int:count>/", tracks, name="generate_tracks"),
     path("playlist/create/", CreatePlaylistView.as_view(), name="playlist_create"),
     path("playlist/<int:pk>/edit/", UpdatePlaylistView.as_view(), name="playlist_edit"),
     path("playlist/<int:pk>/delete/", DeletePlaylistView.as_view(), name="playlist_delete"),

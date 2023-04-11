@@ -6,9 +6,11 @@ from account.models import UserProfile
 
 
 class UserRegistrationForm(UserCreationForm):
+    birth_date = forms.DateField(widget=forms.DateInput(attrs={"placeholder": "YYYY-MM-DD"}))
+
     class Meta:
         model = get_user_model()
-        fields = ("email", "first_name", "last_name", "password1", "password2")
+        fields = ("email", "first_name", "last_name", "phone_number", "birth_date", "city", "password1", "password2")
 
 
 class UserProfileForm(forms.ModelForm):
