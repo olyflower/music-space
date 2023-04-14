@@ -31,7 +31,7 @@ class UserLogout(LogoutView):
 class UserRegistration(CreateView):
     template_name = "registration/create_user.html"
     form_class = UserRegistrationForm
-    success_url = reverse_lazy("core:index")
+    success_url = reverse_lazy("core:success_registration")
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
@@ -41,6 +41,16 @@ class UserRegistration(CreateView):
         send_registration_email(request=self.request, user_instance=self.object)
 
         return super().form_valid(form)
+
+
+class SuccessRegistrationView(TemplateView):
+    template_name = "registration/registration_success.html"
+    success_url = reverse_lazy("core:index")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["success_message"] = "Please confirm your email address to activate your account."
+        return context
 
 
 class ActivateUser(RedirectView):
