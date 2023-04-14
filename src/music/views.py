@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
-                                  UpdateView)
+                                  TemplateView, UpdateView)
 
 from music.forms import (AlbumAddForm, ArtistAddForm, PlaylistForm,
                          TrackUploadForm)
@@ -25,7 +25,7 @@ class GetTracksView(LoginRequiredMixin, ListView):
             return Track.objects.order_by("artist__name")
         else:
             search = self.request.GET.get("search_text")
-            search_fields = ["title", "artist__name", "album__title"]
+            search_fields = ["title", "artist__name", "album__title", "album__genre__name", "length", "create_date"]
             if search:
                 or_filter = Q()
                 for field in search_fields:
@@ -42,7 +42,7 @@ class TrackDetailView(LoginRequiredMixin, DetailView):
     model = Track
 
 
-class TrackUploadView(CreateView):
+class TrackUploadView(LoginRequiredMixin, CreateView):
     model = Track
     form_class = TrackUploadForm
     template_name = "music/track_upload.html"
@@ -57,10 +57,10 @@ class TrackUploadView(CreateView):
             return super().form_valid(form)
 
 
-class AlbumAddView(CreateView):
+class AlbumAddView(LoginRequiredMixin, CreateView):
     model = Album
     template_name = "music/add_album.html"
-    success_url = reverse_lazy("music:get_tracks")
+    success_url = reverse_lazy("music:upload")
     form_class = AlbumAddForm
 
     def form_valid(self, form):
@@ -71,10 +71,10 @@ class AlbumAddView(CreateView):
             return super().form_valid(form)
 
 
-class ArtistAddView(CreateView):
+class ArtistAddView(LoginRequiredMixin, CreateView):
     model = Artist
     template_name = "music/add_artist.html"
-    success_url = reverse_lazy("music:get_tracks")
+    success_url = reverse_lazy("music:upload")
     form_class = ArtistAddForm
 
     def form_valid(self, form):
@@ -83,6 +83,10 @@ class ArtistAddView(CreateView):
             return self.form_invalid(form)
         else:
             return super().form_valid(form)
+
+
+class UploadView(LoginRequiredMixin, TemplateView):
+    template_name = "music/upload.html"
 
 
 class GetGenresView(LoginRequiredMixin, ListView):
@@ -168,11 +172,25 @@ class GetFavoriteTrackView(LoginRequiredMixin, ListView):
         return queryset
 
 
+class GetArtistsView(LoginRequiredMixin, ListView):
+    login_url = "core:login"
+    redirect_field_name = "index"
+    template_name = "music/artist_list.html"
+    model = Artist
+
+
 class ArtistDetailView(LoginRequiredMixin, DetailView):
     login_url = "core:login"
     redirect_field_name = "index"
     template_name = "music/artist_detail.html"
     model = Artist
+
+
+class GetAlbumsView(LoginRequiredMixin, ListView):
+    login_url = "core:login"
+    redirect_field_name = "index"
+    template_name = "music/album_list.html"
+    model = Album
 
 
 class AlbumDetailView(LoginRequiredMixin, DetailView):
@@ -182,7 +200,7 @@ class AlbumDetailView(LoginRequiredMixin, DetailView):
     model = Album
 
 
-class AddToFavoritesView(View):
+class AddToFavoritesView(LoginRequiredMixin, View):
     def post(self, request, pk):
         track = Track.objects.get(pk=pk)
         favorite_track_exists = FavoriteTrack.objects.filter(user=request.user, track=track).exists()

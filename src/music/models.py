@@ -48,9 +48,9 @@ class Playlist(BaseModel):
 
 class Album(BaseModel):
     title = models.CharField(max_length=200, blank=False, null=False)
-    description = models.TextField(default="description", null=True)
+    description = models.TextField(null=True, blank=True)
     genre = models.ForeignKey(to="music.Genre", null=True, related_name="genres", on_delete=models.CASCADE)
-    image = models.ImageField(default="default.png", upload_to="covers/")
+    image = models.ImageField(upload_to="covers/", blank=True, null=True)
 
     class Meta:
         ordering = ["title"]
@@ -70,7 +70,7 @@ class Album(BaseModel):
 
 class Artist(BaseModel):
     name = models.CharField(max_length=200, blank=False, null=False)
-    biography = models.TextField(default="biography", null=True)
+    biography = models.TextField(null=True, blank=True)
 
     class Meta:
         ordering = ["name"]
