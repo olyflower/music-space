@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.108.0">
-    <title>Cover Template · Bootstrap v5.3</title>
+    <title>Music-space</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/cover/">
@@ -47,7 +47,7 @@
             bottom: 0;
             width: 100%;
             height: 100px;
-            background-color: #2e092f59;
+            background-color: #170b17d6;
             padding: 15px;
             gap: 180px;
         }
@@ -203,6 +203,8 @@
         body {
         font-family: Arial, sans-serif;
         }
+
+
     </style>
 
     <link href="cover.css" rel="stylesheet">
@@ -224,11 +226,14 @@
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="{% url 'core:index' %}" class="nav-link px-2 text-white">Home</a></li>
                         <li><a href="{% url 'music:get_tracks' %}" class="nav-link px-2 text-white">Tracks</a></li>
-                        <li><a href="{% url 'music:get_genres' %}" class="nav-link px-2 text-white">Music genres</a>
+                        <li><a href="{% url 'music:upload' %}" class="nav-link px-2 text-white">Upload</a></li>
+                        <li><a href="{% url 'music:get_artists' %}" class="nav-link px-2 text-white">Artists</a></li>
+                        <li><a href="{% url 'music:get_albums' %}" class="nav-link px-2 text-white">Albums</a></li>
+                        <li><a href="{% url 'music:get_genres' %}" class="nav-link px-2 text-white">Genres</a>
                         </li>
                         <li><a href="{% url 'music:get_playlist' %}" class="nav-link px-2 text-white">Playlists</a></li>
-                        <li><a href="{% url 'music:favourite_tracks' %}" class="nav-link px-2 text-white">Favourite
-                            tracks</a></li>
+                        <li><a href="{% url 'music:favourite_tracks' %}" class="nav-link px-2 text-white">Favourites</a>
+                        </li>
                     </ul>
                     <div class="dropdown text-end">
                         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle show"
@@ -238,7 +243,6 @@
                         </a>
                         <ul class="dropdown-menu text-small" data-popper-placement="bottom-start"
                             style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(0px, 34.4px, 0px);">
-                            <li><a class="dropdown-item" href="{% url 'core:login' %}">Login</a></li>
                             {% if user.is_authenticated %}
                             <li><a class="dropdown-item">{{ user.first_name|title }} {{ user.last_name|title }}</a>
                             </li>
@@ -248,6 +252,7 @@
                             </li>
                             <li><a class="dropdown-item" href="{% url 'core:logout' %}">Logout</a></li>
                             {% else %}
+                            <li><a class="dropdown-item" href="{% url 'core:login' %}">Login</a></li>
                             <li><a class="dropdown-item" href="{% url 'core:registration' %}">Registration</a></li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -336,7 +341,107 @@
     Your browser does not support the audio element.
 </audio>
 
-<script src="{% static 'js/index.js' %}"></script>
+
+<script>
+let mainAudio = document.querySelector(`.main-audio`);
+let currentId = 0;
+let play = false;
+let isChanging = false;
+
+let slider = document.querySelector('.player__controls__timeline__slider');
+let audio = document.querySelector('.audio');
+
+
+if (localStorage.getItem('path')) {
+console.log([localStorage.getItem('path'), localStorage.getItem('name'), localStorage.getItem('artist')]);
+    playTrack(0, [[localStorage.getItem('path'), localStorage.getItem('name'), localStorage.getItem('artist')]], localStorage.getItem('time'), localStorage.getItem('play'));
+}
+
+
+function playTrack (id, _queue=queue, time=0, _play=true) {
+	currentId = id;
+	mainAudio.pause();
+	mainAudio.currentTime = 0;
+	mainAudio.querySelector('source').src = _queue[currentId][0];
+	mainAudio.load();
+    play = Boolean(_play);
+	if (play) {
+	console.log(play, _play);
+	    mainAudio.play();
+	    localStorage.setItem('play', '1');
+	document.querySelector('.player__controls__buttons__play').style.background = `url({% static 'pause.svg' %})`;
+	} else {
+	    mainAudio.pause();
+	document.querySelector('.player__controls__buttons__play').style.background = `url({% static 'play.svg' %})`;
+	}
+	mainAudio.currentTime = time;
+	document.querySelector('.player__controls__buttons__play').style.backgroundSize = `100% 100%`;
+	document.querySelector('.player__info__title').innerText = _queue[currentId][1];
+	document.querySelector('.player__info__artist').innerText = _queue[currentId][2];
+
+	localStorage.setItem('path', _queue[currentId][0]);
+	localStorage.setItem('name', _queue[currentId][1]);
+	localStorage.setItem('artist', _queue[currentId][2]);
+}
+
+document.querySelector('.player__controls__buttons__previous').addEventListener('click', () => {
+	playTrack(--currentId);
+});
+
+
+document.querySelector('.player__controls__buttons__next').addEventListener('click', () => {
+	playTrack(++currentId);
+});
+
+setInterval(() => {
+	if (isChanging) return;
+	console.log('+');
+	slider.max = Math.ceil(mainAudio.duration ? mainAudio.duration : '00:00');
+	slider.value = parseInt(mainAudio.currentTime);
+	slider.setAttribute('value', parseInt(mainAudio.currentTime));
+	document.querySelector('.player__controls__timeline__start').innerText = mainAudio.duration ? Math.floor(mainAudio.currentTime / 60) + ':' + Math.ceil(mainAudio.currentTime % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false }) : '00:00';
+	document.querySelector('.player__controls__timeline__end').innerText =  mainAudio.duration ? Math.floor(mainAudio.duration / 60) + ':' + Math.ceil(mainAudio.duration % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false }) : '00:00';
+    localStorage.setItem('time', mainAudio.currentTime);
+}, 1000);
+
+slider.addEventListener('mousedown', (e) => {
+	isChanging = true;
+	e.preventDefault();
+});
+
+slider.addEventListener('mouseup', () => {
+	isChanging = false;
+});
+
+slider.addEventListener('change', () => {
+	mainAudio.currentTime = slider.value;
+});
+
+document.querySelector('.player__volume__slider').addEventListener('input', () => {
+	mainAudio.volume = +document.querySelector('.player__volume__slider').value;
+});
+
+
+document.querySelector('.player__controls__buttons__play').addEventListener('click', () => {
+    console.log(1)
+	if (play) {
+		mainAudio.pause();
+		document.querySelector('.player__controls__buttons__play').style.background = `url({% static 'play.svg' %})`;
+	} else {
+		mainAudio.play();
+		document.querySelector('.player__controls__buttons__play').style.background = `url({% static 'pause.svg' %})`;
+	}
+	play = !play;
+	document.querySelector('.player__controls__buttons__play').style.backgroundSize = `100% 100%`;
+	localStorage.setItem('play', play ? '1' : '');
+});
+
+mainAudio.addEventListener('ended', () => {
+    try { playTrack(++currentId); }
+    catch { localStorage.setItem('play', ''); }
+});
+
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"

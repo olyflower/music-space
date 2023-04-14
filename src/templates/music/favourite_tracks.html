@@ -21,16 +21,15 @@ a {
 h1 {
   font-family: 'Arial Black', sans-serif;
 }
-.table-container {
-  height: 500px;
-}
 
 .table tbody {
   height: 400px;
   display: block;
   overflow-y: auto;
 }
-
+.cover-container {
+  overflow: hidden;
+}
 .table thead,
 .table tbody tr {
   display: table;
@@ -48,6 +47,7 @@ h1 {
               <a href="?sort=artist">Artist</a>
             </th>
             <th scope="col" class="large-font">Album</th>
+            <th scope="col" class="large-font">Genre</th>
             <th scope="col" class="large-font">Play</th>
             <th scope="col" class="large-font">Remove from favorites</th>
         </tr>
@@ -64,6 +64,10 @@ h1 {
             <td style="color: white !important;">
                 <a href="{{ track.track.album.get_absolute_url }}" style="color: inherit !important; text-decoration: none;">{{ track.track.album }}</a>
             </td>
+            <td style="color: white !important;">
+                <a href="{{ track.track.album.genre.get_absolute_url }}" style="color: inherit !important; text-decoration: none;">{{ track.track.album.genre }}</a>
+            </td>
+
             <td>
                 <div class="play-button btn" data-track="{{ forloop.counter }}"><i class="bi bi-play-circle-fill"></i>
                 </div>

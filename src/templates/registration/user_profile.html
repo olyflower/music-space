@@ -5,6 +5,13 @@
 <div class="profile">
     <div class="profile-header">
         <h1>{{ user.first_name }}</h1>
+        <div>
+            {% if user.avatar %}
+                <img src="{{ user.avatar.url }}">
+            {% else %}
+                <img src="{% static 'avatar_icon.jpg' %}">
+            {% endif %}
+        </div>
     </div>
     <div class="profile-body">
         <h2>About Me</h2>
