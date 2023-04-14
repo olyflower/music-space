@@ -4,7 +4,7 @@ DEBUG = False
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
-ALLOWED_HOSTS = ["localhost", "ec2-3-87-229-182.compute-1.amazonaws.com"]
+ALLOWED_HOSTS = ["localhost", "ec2-34-239-122-112.compute-1.amazonaws.com"]
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
