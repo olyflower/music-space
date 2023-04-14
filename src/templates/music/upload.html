@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-3">Music Storage</h1>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                <a class="btn btn-primary btn-lg me-md-2 mb-3" href="{% url 'music:add_artist' %}">Add Artist</a>
+                <a class="btn btn-primary btn-lg me-md-2 mb-3" href="{% url 'music:add_album' %}">Add Album</a>
+                <a class="btn btn-primary btn-lg mb-3" href="{% url 'music:track_upload' %}">Upload Track</a>
+            </div>
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                    <img src="{% static 'upload_artist.jpg' %}" width="416" height="290" alt="album">
+                </div>
+                <div class="col-md-auto">
+                    <img src="{% static 'upload_album.jpg' %}" width="416" height="290" alt="artist">
+                </div>
+                <div class="col-md-auto">
+                    <img src="{% static 'upload_track.jpg' %}" width="416" height="290" alt="track">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="height: 180px;"></div>
+
+<style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .btn-primary {
+      background-color: #b122a4;
+      border-color: #b122a4;
+    }
+    .btn-primary:hover {
+      background-color: #75156d;
+      border-color: #75156d;
+    }
+</style>
+{% endblock %}
+
