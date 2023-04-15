@@ -226,13 +226,13 @@
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="{% url 'core:index' %}" class="nav-link px-2 text-white">Home</a></li>
                         <li><a href="{% url 'music:get_tracks' %}" class="nav-link px-2 text-white">Tracks</a></li>
-                        <li><a href="{% url 'music:upload' %}" class="nav-link px-2 text-white">Upload</a></li>
                         <li><a href="{% url 'music:get_artists' %}" class="nav-link px-2 text-white">Artists</a></li>
                         <li><a href="{% url 'music:get_albums' %}" class="nav-link px-2 text-white">Albums</a></li>
                         <li><a href="{% url 'music:get_genres' %}" class="nav-link px-2 text-white">Genres</a>
                         </li>
                         <li><a href="{% url 'music:get_playlist' %}" class="nav-link px-2 text-white">Playlists</a></li>
                         <li><a href="{% url 'music:favourite_tracks' %}" class="nav-link px-2 text-white">Favourites</a>
+                        <li><a href="{% url 'music:upload' %}" class="nav-link px-2 text-white">Upload</a></li>
                         </li>
                     </ul>
                     <div class="dropdown text-end">
@@ -257,7 +257,6 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="{% url 'core:logout' %}">Logout</a></li>
                             {% endif %}
                         </ul>
                     </div>
@@ -317,10 +316,10 @@
                 <div class="player__controls__buttons__next player__controls__button"></div>
             </div>
             <div class="player__controls__timeline">
-                <div class="player__controls__timeline__start">0:14</div>
+                <div class="player__controls__timeline__start">0:00</div>
                 <input type="range" min="0" max="100" value="0"
                        class="player__controls__timeline__slider green_slider">
-                <div class="player__controls__timeline__end">3:01</div>
+                <div class="player__controls__timeline__end">0:00</div>
             </div>
         </div>
 
@@ -404,9 +403,8 @@ setInterval(() => {
     localStorage.setItem('time', mainAudio.currentTime);
 }, 1000);
 
-slider.addEventListener('mousedown', (e) => {
+slider.addEventListener('mousedown', () => {
 	isChanging = true;
-	e.preventDefault();
 });
 
 slider.addEventListener('mouseup', () => {
@@ -415,12 +413,24 @@ slider.addEventListener('mouseup', () => {
 
 slider.addEventListener('change', () => {
 	mainAudio.currentTime = slider.value;
+	if (!play) mainAudio.pause();
+    slider.setAttribute('value', parseInt(mainAudio.currentTime));
+    localStorage.setItem('time', mainAudio.currentTime);
+});
+
+slider.addEventListener('input', () => {
+	document.querySelector('.player__controls__timeline__start').innerText = mainAudio.duration ? Math.floor(+slider.value / 60) + ':' + Math.ceil(+slider.value % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false }) : '00:00';
+	document.querySelector('.player__controls__timeline__end').innerText =  mainAudio.duration ? Math.floor(mainAudio.duration / 60) + ':' + Math.ceil(mainAudio.duration % 60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false }) : '00:00';
 });
 
 document.querySelector('.player__volume__slider').addEventListener('input', () => {
 	mainAudio.volume = +document.querySelector('.player__volume__slider').value;
 });
 
+
+document.querySelector('.player__volume__slider').addEventListener('change', () => {
+	mainAudio.pause();
+});
 
 document.querySelector('.player__controls__buttons__play').addEventListener('click', () => {
     console.log(1)
