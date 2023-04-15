@@ -355,7 +355,8 @@ if (localStorage.getItem('path')) {
 console.log([localStorage.getItem('path'), localStorage.getItem('name'), localStorage.getItem('artist')]);
     playTrack(0, [[localStorage.getItem('path'), localStorage.getItem('name'), localStorage.getItem('artist')]], localStorage.getItem('time'), localStorage.getItem('play'));
 }
-
+document.querySelector('.player__volume__slider').value = localStorage.getItem('volume');
+mainAudio.volume = localStorage.getItem('volume');
 
 function playTrack (id, _queue=queue, time=0, _play=true) {
 	currentId = id;
@@ -425,11 +426,8 @@ slider.addEventListener('input', () => {
 
 document.querySelector('.player__volume__slider').addEventListener('input', () => {
 	mainAudio.volume = +document.querySelector('.player__volume__slider').value;
-});
+    localStorage.setItem('volume', mainAudio.volume);
 
-
-document.querySelector('.player__volume__slider').addEventListener('change', () => {
-	mainAudio.pause();
 });
 
 document.querySelector('.player__controls__buttons__play').addEventListener('click', () => {

@@ -24,7 +24,7 @@ class Track(BaseModel):
         return reverse("music:track_detail", kwargs={"pk": self.pk})
 
     def __str__(self):
-        return f"{self.title} ({self.pk})"
+        return f"{self.title} ({self.artist})"
 
     def save(self, *args, **kwargs):
         self.full_clean()
