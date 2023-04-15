@@ -50,7 +50,10 @@ class TrackUploadView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        if Track.objects.filter(title=form.cleaned_data["title"]).exists():
+        title = form.cleaned_data["title"]
+        artist = form.cleaned_data["artist"]
+        album = form.cleaned_data["album"]
+        if Track.objects.filter(title=title, artist=artist, album=album).exists():
             form.add_error(None, "Track already exists!")
             return self.form_invalid(form)
         else:
@@ -86,6 +89,7 @@ class ArtistAddView(LoginRequiredMixin, CreateView):
 
 
 class UploadView(LoginRequiredMixin, TemplateView):
+    login_url = "core:login"
     template_name = "music/upload.html"
 
 
