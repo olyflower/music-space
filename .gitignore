@@ -128,3 +128,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Media and tracks
+media/tracks/
+tracks/
+src/media/tracks/
+*.mp3
+*.wav
